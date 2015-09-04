@@ -56,8 +56,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <paper-toolbar id="mainToolbar" class="medium-tall">
 
       <!-- Brand mark -->
-      <div id="menu-brand" class="app-brand bottom self-end">
-        <iron-image class="" sizing="contain" preload fade src="{{logo}}"></iron-image>
+      <div id="menu-brand" class="app-brand bottom self-end"> <!-- TODO: image is vertically centered and leaves a small gap at the bottom -->
+        <iron-image class="" sizing="cover" preload fade src="{{logo}}"></iron-image>
       </div>
       <!-- Application name -->
       <div id="menu-title" class="app-name flex bottom">{{name}}</div>
