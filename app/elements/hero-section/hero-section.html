@@ -1,0 +1,89 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="hero-section">
+  <style>
+    :host {
+      display: block;
+      border-bottom: solid 1px darkgray;
+    }
+    #mainContent {
+      padding: 48px 62px;
+    }
+    #heroImg {
+      width: 55%;
+    }
+    #marketingBlock {
+      box-sizing: border-box;
+      width: 40%;
+      float: right;
+    }
+    #marketingBlock ul {
+      list-style: none;
+      margin-bottom: 35px;
+    }
+    #marketingWrapper {
+      margin: 0 auto;
+      display: table;
+    }
+  </style>
+  <template>
+    <section id="mainContent">
+      <iron-image id="heroImg" class="" sizing="cover" preload fade src="{{heroImg}}"></iron-image>
+      <article id="marketingBlock">
+        <div id="marketingWrapper">
+          <h1>Features:</h1>
+          <ul>
+            <li>Aweseome stuff</li>
+            <li>Great thing</li>
+            <li>Sweet person</li>
+            <li>Rockin' feature</li>
+            <li>We're the best</li>
+          </ul>
+          <h1>Benefits:</h1>
+          <ul>
+            <li>Aweseome stuff</li>
+            <li>Great thing</li>
+            <li>Sweet person</li>
+            <li>Rockin' feature</li>
+            <li>We're the best</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+  </template>
+  <script>
+  (function() {
+    Polymer({
+      is: 'hero-section',
+
+      properties: {
+        sectionHeight: {
+          type: String,
+          value: '400',
+          notify: true
+        },
+        heroImg: {
+          type: String,
+          value: 'http://lorempixel.com/400/400/abstract',
+          notify: true
+        }
+      },
+
+      ready: function () {
+          this.$.mainContent.style.height = this.sectionHeight + 'px';
+          this.$.heroImg.style.height = parseInt(this.sectionHeight) - (48*2) + 'px';
+      }
+    });
+  })();
+  </script>
+</dom-module>

@@ -62,7 +62,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <!-- Application name -->
       <div id="menu-title" class="app-name flex bottom">{{name}}</div>
       <!-- Social menu -->
-      <div class="top flex"></div>
+      <div class="top flex"></div> <!-- TODO: configure hamburger menu on mobile size -->
       <div class="social-menu top self-end-justified">
         <content select=".social-menu-items"></content>
       </div>
@@ -83,17 +83,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       properties: {
         logo: {
           type: String,
-          value: 'http://lorempixel.com/150/150/abstract',
+          value: 'http://lorempixel.com/150/150/places',
           notify: true
         },
         name: {
           type: String,
           value: '',
-          notify: true
-        },
-        foo: {
-          type: String,
-          value: 'bar',
           notify: true
         }
       }
