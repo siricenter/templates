@@ -74,11 +74,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </bar-header>
 
     <!-- Main Content -->
-    <hero-section sectionHeight="600" heroImg="http://lorempixel.com/400/400/people"></hero-section>
     <div class="content">
       <iron-pages attr-for-selected="data-route" selected="{{route}}">
 
         <section data-route="home">
+          <hero-section sectionHeight="100" heroImg="http://lorempixel.com/600/600/people">
+            <section class="marketingText">
+              <h1>Features:</h1>
+              <ul>
+                <li>Aweseome stuff</li>
+                <li>Great thing</li>
+                <li>Sweet person</li>
+                <li>Rockin' feature</li>
+                <li>We're the best</li>
+              </ul>
+              <h1>Benefits:</h1>
+              <ul>
+                <li>Make you look better</li>
+                <li>Save your day</li>
+                <li>Increase customer retention</li>
+                <li>Generate cash</li>
+                <li>End world hunger</li>
+              </ul>
+            </section>
+          </hero-section>
+
           <paper-material elevation="1">
             <my-greeting></my-greeting>
 
