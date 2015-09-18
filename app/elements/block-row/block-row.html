@@ -11,37 +11,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <dom-module id="block-row">
-  <style>
-    :host {
-      display: block;
-    }
-
-    #content {
-      display: flex;
-      box-sizing: border-box;
-      width: 100%;
-    }
-    #content > * {
-      width: 33%;
-      margin-right: 30px;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      padding: 15px;
-    }
-    #content> *:last-child {
-      margin-right: 0;
-    }
-  </style>
   <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      #content {
+        display: flex;
+        box-sizing: border-box;
+        width: 100%;
+      }
+      #content > * {
+        width: 33%;
+        margin-right: 30px;
+        margin-top: 45px;
+        margin-bottom: 20px;
+        padding: 15px;
+      }
+      #content> *:last-child {
+        margin-right: 0;
+      }
+    </style>
+
     <section id="content">
       <paper-material elevation="{{cardElevation}}">
-        <p>test 1</p>
-      </paper-material>
-      <paper-material elevation="3">
-        <p>test 2</p>
+        <content select="#block_1"></content>
       </paper-material>
       <paper-material elevation="{{cardElevation}}">
-        <p>test 3</p>
+        <content select="#block_2"></content>
+      </paper-material>
+      <paper-material elevation="{{cardElevation}}">
+        <content select="#block_3"></content>
       </paper-material>
     </section>
   </template>
