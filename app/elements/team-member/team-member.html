@@ -17,8 +17,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
     </style>
-    <div>{{title}}</div>
+
+    <p>{{title}}</p>
+    <p> hellow??</p>
+
     <paper-button raised>Button!</paper-button>
+    
   </template>
   <script>
   (function() {
@@ -31,6 +35,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         title: {
           type: String,
           value: 'team-member',
+          notify: true
+        }
+        name: {
+          type: String,
+          value: 'Austin Lee',
+          notify: true
+        }
+        phone: {
+          type: String,
+          value: '(503) 962-9838',
+          notify: true
+        }
+        email: {
+          type: String,
+          value: 'Lee13011@byui.edu',
           notify: true
         }
       }
