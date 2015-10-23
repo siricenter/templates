@@ -1,0 +1,104 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="bio-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      #content {
+        padding-top: 25px;
+        padding-bottom: 25px;
+      }
+      #card-container {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+      }
+      #heading2 {
+        margin: 0;
+      }
+      #mainImage {
+      }
+      iron-image {
+        width: 250px;
+        height: 400px;
+      }
+      .card-border {
+        padding: 0;
+        height: auto;
+      }
+      .text-border {
+        padding: 20px;
+      }
+    </style>
+    <section id="content">
+      <paper-material id="card-container" elevation="{{cardElevation}}">
+        <iron-image id="mainImage" class="" sizing="cover" preload fade src="{{imageSource}}"></iron-image>
+        <div class="text-border">
+        <h2 id="heading2">{{name}}</h2>
+        <h4>{{jobTitle}}</h4>
+        </div>
+      </paper-material>
+    </section>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'bio-card',
+
+      properties: {
+        name: {
+          type: String,
+          value: 'bio-card',
+          notify: true
+        },
+        cardElevation: {
+          type: Number,
+          value: 1,
+          notify: true
+        },
+        imageSource: {
+          type: String,
+          value: "http://lorempixel.com/250/400/cats",
+          notify: true
+        },
+        jobTitle: {
+          type: String,
+          value: 'Web Designer',
+          notify: true
+        },
+        imagePosition: {
+          type: String,
+          value: 'Left',
+          notify: true
+        }
+      },
+
+      ready: function () {
+        if(this.imagePosition == "Right" | "right") {
+          this.$['card-container'].style['flex-direction'] = 'row-reverse';
+          this.$['card-container'].style['-webkit-flex-direction'] = 'row-reverse';
+        }
+        else if(this.imagePosition == "Left" | "left") {
+          this.$['card-container'].style['flex-direction'] = 'row';
+          this.$['card-container'].style['-webkit-flex-direction'] = 'row';
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>
