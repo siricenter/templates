@@ -13,13 +13,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="team-member">
   <template>
     <style>
+
+    #profilePic {
+      position: relative;
+      top: 5px;
+      left: 5px;
+      bottom: 5px;
+    }
+    #info {
+      position: relative;
+      float: right;
+      right: 5px;
+      
+    }
+
       :host {
         display: block;
       }
+      paper-material {
+
+      }
     </style>
 
-    <paper-button raised>Button</paper-button>
-    <p>{{title}}</p>
+    <paper-material>
+    <iron-image id="profilePic" src="http://lorempixel.com/100/100/cats"></iron-image>
+    
+    <ul id="info">
+      <li>{{name}}</li>
+      <li>{{title}}</li>
+      <li>{{phone}}</li>
+      <li>{{email}}</li>
+    </ul>
+
+    </paper-material>
     
   </template>
 
@@ -31,14 +57,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'team-member',
 
       properties: {
-        title: {
-          type: String,
-          value: 'team-member',
-          notify: true
-        },
         name: {
           type: String,
           value: 'Austin Lee',
+          notify: true
+        },
+                title: {
+          type: String,
+          value: 'CSR-1',
           notify: true
         },
         phone: {
