@@ -14,16 +14,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style>
 
+    #wrapper {
+      height: 300px;
+      width: 500px;
+    }
+
     #profilePic {
-      position: relative;
-      top: 5px;
-      left: 5px;
-      bottom: 5px;
+      padding: 1px;
+      border: 1px solid black;
     }
     #info {
-      position: relative;
       float: right;
-      right: 5px;
+      padding: 5px;
       
     }
 
@@ -35,8 +37,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
+    <div id="wrapper">
     <paper-material>
-    <iron-image id="profilePic" src="http://lorempixel.com/100/100/cats"></iron-image>
+    <iron-image id="profilePic" src="http://lorempixel.com/200/200/cats"></iron-image>
     
     <ul id="info">
       <li>{{name}}</li>
@@ -46,9 +49,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </ul>
 
     </paper-material>
-    
-  </template>
+    </div>
 
+  </template>
   <script>
   (function() {
     'use strict';
