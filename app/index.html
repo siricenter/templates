@@ -63,18 +63,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <paper-scroll-header-panel condenses keep-condensed-header>
 
     <bar-header name="RBDC Template" logo="http://lorempixel.com/150/150/abstract">
+
       <div class="social-menu-items">
         <a href=""><iron-icon icon="social:share"></iron-icon></a>
       </div>
+
       <div class="site-menu-items">
         <a data-route="home" href="/"><iron-icon class="icon-menu" icon="home"></iron-icon>Home</a>
         <a data-route="users" href="/users"><iron-icon class="icon-menu" icon="info"></iron-icon>About</a>
         <a data-route="contact" href="/contact"><iron-icon class="icon-menu" icon="mail"></iron-icon>Contact</a>
+
       </div>
     </bar-header>
 
+    <!-- Call to Action -->
+    <call-to-action>
+      <div class="wrapper">
+        <p class="header"> A call to action.</p>
+        <p class="subtitle"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+        <button class="main-button">Click here for awesomesauce</button>
+      </div>
+    </call-to-action>
+
     <!-- Main Content -->
     <div class="content">
+
       <iron-pages attr-for-selected="data-route" selected="{{route}}">
 
         <section data-route="home">
@@ -112,6 +125,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </block-row>
 
           <testimonial-section foo="bar"></testimonial-section>
+
 
           <paper-material elevation="1">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
