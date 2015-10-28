@@ -25,30 +25,64 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: flex;
         -webkit-flex-direction: row;
         flex-direction: row;
+        width: 100%;
       }
       #heading2 {
         margin: 0;
+        font-size: 250%;
       }
-      #mainImage {
+      #main-image {
+      }
+      #job-text {
+        display: block;
+      }
+      #contact-text {
+      }
+      #person-info-container {
+        display: flex;
+        flex-direction: row;
+      }
+      #text-content-wrapper {
+        display: flex;
+        flex-direction: column;
       }
       iron-image {
-        width: 250px;
+        width: 100%;
         height: 400px;
       }
       .card-border {
+        margin: 0;
         padding: 0;
         height: auto;
       }
       .text-border {
         padding: 20px;
+        width: 40%;
+      }
+      .text-border2 {
+        padding: 20px;
       }
     </style>
     <section id="content">
       <paper-material id="card-container" elevation="{{cardElevation}}">
-        <iron-image id="mainImage" class="" sizing="cover" preload fade src="{{imageSource}}"></iron-image>
-        <div class="text-border">
-        <h2 id="heading2">{{name}}</h2>
-        <h4>{{jobTitle}}</h4>
+        <iron-image id="main-image" class="" sizing="cover" preload fade src="{{image_source}}"></iron-image>
+        <div id="text-content-wrapper">
+          <div id="person-info-container">
+            <div id="job-text" class="text-border">
+              <h2 id="heading2">{{name}}</h2>
+              <h4>{{job_title}}</h4>
+            </div>
+            <div id="contact-text" class="text-border">
+              <p class="card-border"><span>Websites: </span>{{websites}}</p>
+              <p class="card-border"><span>Phone: </span>{{phone}}</p>
+              <p class="card-border"><span>Email: </span>{{email}}</p>
+              <p class="card-border"><span>Address: </span>{{address}}</p>
+            </div>
+          </div>
+          <div class="text-border2">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
         </div>
       </paper-material>
     </section>
@@ -66,38 +100,59 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           value: 'bio-card',
           notify: true
         },
-        cardElevation: {
+        card_elevation: {
           type: Number,
           value: 1,
           notify: true
         },
-        imageSource: {
+        image_source: {
           type: String,
           value: "http://lorempixel.com/250/400/cats",
           notify: true
         },
-        jobTitle: {
+        job_title: {
           type: String,
           value: 'Web Designer',
           notify: true
         },
-        imagePosition: {
+        image_position: {
           type: String,
           value: 'Left',
+          notify: true
+        },
+        address: {
+          type: String,
+          value: '3483 Street Street',
+          notify: true
+        },
+        email: {
+          type: String,
+          value: 'JohnSmith@email.com',
+          notify: true
+        },
+        phone: {
+          type: String,
+          value: '(555)555-4389',
+          notify: true
+        },
+        websites: {
+          type: String,
+          value: 'www.helloworld.com',
           notify: true
         }
       },
 
       ready: function () {
-        if(this.imagePosition == "Right" | "right") {
+        if(this.image_position == "Right" | "right") {
           this.$['card-container'].style['flex-direction'] = 'row-reverse';
           this.$['card-container'].style['-webkit-flex-direction'] = 'row-reverse';
         }
-        else if(this.imagePosition == "Left" | "left") {
+        else if(this.image_position == "Left" | "left") {
           this.$['card-container'].style['flex-direction'] = 'row';
           this.$['card-container'].style['-webkit-flex-direction'] = 'row';
         }
       }
+
     });
   })();
   </script>
