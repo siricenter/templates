@@ -15,18 +15,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
 
     #wrapper {
-      height: 300px;
-      width: 500px;
+      display: flex;
     }
 
     #profilePic {
-      padding: 1px;
+      width: 100px;
+      margin:5px;
       border: 1px solid black;
     }
-    #info {
+    #list {
       float: right;
       padding: 5px;
       
+    }
+    #name {
+      font-size: 20px;
     }
 
       :host {
@@ -39,13 +42,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div id="wrapper">
     <paper-material>
-    <iron-image id="profilePic" src="http://lorempixel.com/200/200/cats"></iron-image>
+    <img id="profilePic" src="../../images/Headshot.jpg">
     
-    <ul id="info">
-      <li>{{name}}</li>
-      <li>{{title}}</li>
-      <li>{{phone}}</li>
-      <li>{{email}}</li>
+    <ul id="list">
+      <li id="name">{{name}}</li>
+      <li id="title">Title:<span>{{title}}</span></li>
+      <li id="phone">{{phone}}</li>
+      <li id="email">{{email}}</li>
     </ul>
 
     </paper-material>
@@ -65,7 +68,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           value: 'Austin Lee',
           notify: true
         },
-                title: {
+        title: {
           type: String,
           value: 'CSR-1',
           notify: true
