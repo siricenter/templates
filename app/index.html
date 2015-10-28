@@ -77,20 +77,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </bar-header>
 
     <!-- Call to Action -->
-    <call-to-action>
+    
+
+    <!-- Main Content -->
+    <div class="content">
+
+
+
+      <iron-pages attr-for-selected="data-route" selected="{{route}}">
+
+
+
+        <section data-route="home">
+
+          <call-to-action>
       <div class="wrapper">
         <p class="header"> A call to action.</p>
         <p class="subtitle"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
         <button class="main-button">Click here for awesomesauce</button>
       </div>
     </call-to-action>
-
-    <!-- Main Content -->
-    <div class="content">
-
-      <iron-pages attr-for-selected="data-route" selected="{{route}}">
-
-        <section data-route="home">
           <hero-section sectionHeight="100" heroImg="http://lorempixel.com/600/600/people">
             <section class="marketingText">
               <h1>Features:</h1>

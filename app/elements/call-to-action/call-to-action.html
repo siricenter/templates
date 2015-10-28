@@ -13,22 +13,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
 
       .wrapper {
-        background: #FFF;
+        background: #fafafa;
         text-align: center;
-
         padding: 48px 62px;
+        padding-top: 0px;
         border-bottom: solid 1px darkgray;
-        height: auto;
-        width: auto;
       }
 
       .header {
-        font-family: Arial Black;
-        font-size: 50px;
+        font-family: Roboto;
+        font-size: 70px;
       }
 
       .subtitle {
-        font-family: Arial;
+        font-family: Roboto;
         font-size: 20px;
       }
 
@@ -50,12 +48,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .main-button:hover {
         animation: fade ease-in 0.1s;
         animation-fill-mode: forwards;
-        background-color: #e74c3c;
+        /*background-color: #e74c3c;*/
       } 
 
       @keyframes fade {
         from   { font-size: 25px; }
         to  { font-size: 24px; }
+
+        from  {background: #ca2918; }
+        to    {background: #e74c3c; }
         
       }
     </style>
