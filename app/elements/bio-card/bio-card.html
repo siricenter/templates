@@ -27,10 +27,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         flex-direction: row;
         width: 100%;
       }
-      #heading2 {
-        margin: 0;
-        font-size: 250%;
-      }
       #main-image {
       }
       #job-text {
@@ -55,33 +51,69 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 0;
         height: auto;
       }
+      .heading2 {
+        margin: 0;
+        font-size: 250%;
+      }
+      .heading3 {
+        margin: 0;
+        padding: 5px;
+      }
       .text-border {
-        padding: 20px;
+        margin: 0;
+        padding: 40px;
         width: 40%;
       }
       .text-border2 {
-        padding: 20px;
+        margin: 0;
+        padding: 10px 40px 10px 40px;
+      }
+      .experience-item {
+        height: auto;
+        padding: 10px 40px 10px 40px;
+      }
+      .experience-title {
+        background-color: lightgray;
+        height: 40px;
+        padding: 10px 40px 10px 40px;
+      }
+      .experience-wrapper {
       }
     </style>
     <section id="content">
-      <paper-material id="card-container" elevation="{{cardElevation}}">
-        <iron-image id="main-image" class="" sizing="cover" preload fade src="{{image_source}}"></iron-image>
-        <div id="text-content-wrapper">
-          <div id="person-info-container">
-            <div id="job-text" class="text-border">
-              <h2 id="heading2">{{name}}</h2>
-              <h4>{{job_title}}</h4>
+      <paper-material elevation="{{cardElevation}}">
+        <div id="card-container">
+          <iron-image id="main-image" class="" sizing="cover" preload fade src="{{image_source}}"></iron-image>
+          <div id="text-content-wrapper">
+            <div id="person-info-container">
+              <div id="job-text" class="text-border">
+                <h2 class="heading2">{{name}}</h2>
+                <h3>{{job_title}}</h3>
+              </div>
+              <div id="contact-text" class="text-border">
+                <p class="card-border">Websites: <span>{{websites}}</span></p>
+                <p class="card-border">Phone: <span>{{phone}}</span></p>
+                <p class="card-border">Email: <span>{{email}}</span></p>
+                <p class="card-border">Address: <span>{{address}}</span></p>
+              </div>
             </div>
-            <div id="contact-text" class="text-border">
-              <p class="card-border"><span>Websites: </span>{{websites}}</p>
-              <p class="card-border"><span>Phone: </span>{{phone}}</p>
-              <p class="card-border"><span>Email: </span>{{email}}</p>
-              <p class="card-border"><span>Address: </span>{{address}}</p>
+            <div class="text-border2">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
             </div>
           </div>
-          <div class="text-border2">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
+        </div>
+        <div id="experience-wrapper">
+          <div class="experience-title">
+            <h3 class="heading2">Experience</h3>
+          </div>
+          <div class="experience-item">
+            <h3 class="heading3">Experience</h3>
+            <p class="text-border2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+          </div>
+          <div class="experience-item">
+            <h3 class="heading3">Experience</h3>
+            <p class="text-border2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
           </div>
         </div>
       </paper-material>
@@ -107,7 +139,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         image_source: {
           type: String,
-          value: "http://lorempixel.com/250/400/cats",
+          value: "http://lorempixel.com/400/400/cats",
           notify: true
         },
         job_title: {
@@ -143,16 +175,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       ready: function () {
-        if(this.image_position == "Right" | "right") {
+        if(this.image_position == "Right" || this.image_position == "right") {
           this.$['card-container'].style['flex-direction'] = 'row-reverse';
           this.$['card-container'].style['-webkit-flex-direction'] = 'row-reverse';
         }
-        else if(this.image_position == "Left" | "left") {
+        else if(this.image_position == "Left" || this.image_position == "left") {
           this.$['card-container'].style['flex-direction'] = 'row';
           this.$['card-container'].style['-webkit-flex-direction'] = 'row';
         }
+        else if(this.image_position == "Top" || this.image_position == "top") {
+          this.$['card-container'].style['flex-direction'] = 'column';
+          this.$['card-container'].style['-webkit-flex-direction'] = 'column';
+        }
       }
-
     });
   })();
   </script>
