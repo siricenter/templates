@@ -13,46 +13,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="team-member">
   <template>
     <style>
-
-    #wrapper {
-      display: flex;
-    }
-
-    #profilePic {
-      width: 100px;
-      margin:5px;
-      border: 1px solid black;
-    }
-    #list {
-      float: right;
-      padding: 5px;
-      
-    }
-    #name {
-      font-size: 20px;
-    }
-
       :host {
         display: block;
       }
-      paper-material {
 
-      }
     </style>
 
-    <div id="wrapper">
     <paper-material>
-    <img id="profilePic" src="../../images/Headshot.jpg">
+    <section id="wrapper">
+    <img src="{{memberImg}}">
+    <p>{{name}}</p>
     
     <ul id="list">
-      <li id="name">{{name}}</li>
-      <li id="title">Title:<span>{{title}}</span></li>
+      <li id="title">Title: <span>{{title}}</span></li>
       <li id="phone">{{phone}}</li>
       <li id="email">{{email}}</li>
     </ul>
 
+    </section>
     </paper-material>
-    </div>
 
   </template>
   <script>
@@ -82,8 +61,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: String,
           value: 'Lee13011@byui.edu',
           notify: true
+        },
+        memberImg: {
+          type: String,
+          value: 'http://lorempixel.com/300/300/cats',
+          notify: true
         }
       }
+
     });
   })();
   </script>
