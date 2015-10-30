@@ -22,7 +22,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         border: 0;
         width: 100px;
         height: 45px;
-        color: #FFF;
+        color: var(--text-primary-color);
         text-shadow: var(--text-shadow);
         border: 0;
         border-bottom: 5px solid var(--button-color-secondary);
@@ -58,8 +58,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       #close:click {
-        animation: fade-out ease-in 0.3s;
-        animation-fill-mode: forwards;
+        animation: fade-out 0.3s;
       }
 
       #popupContact {
@@ -68,7 +67,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         left: 50%;
         top: 17%;
         margin-left: -202px;
-        animation: fade-in 0.3s;
+        animation: fade-in 0.5s;
       }
 
       iron-icon{
@@ -85,7 +84,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       #title {
         background-color: var(--default-tertiary-color);
-        color: #FFF;
+        color: var(--text-primary-color);
         text-shadow: var(--text-shadow);
         padding: 20px 35px;
         margin: -10px -50px;
@@ -121,7 +120,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-align: center;
         display: block;
         background-color: var(--button-color-primary);
-        color: #fff;
+        color: var(--text-primary-color);
         border: 0px;
         padding: 10px 0;
         font-size: 20px;
@@ -204,12 +203,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     //Function To Display Popup
     function div_show() {
     document.getElementById('login').style.display = "block";
+    document.getElementById("email").focus();
     }
     //Function to Hide Popup
     function div_hide(){
     document.getElementById('login').style.display = "none";
     }
   </script>
-
 
 </dom-module>
