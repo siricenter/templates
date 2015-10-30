@@ -146,7 +146,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <!-- Contact Us Form -->
           <form action="#" id="form" method="post" name="form">
             <iron-icon id="close" class="highlight-off" icon="highlight-off" onclick="div_hide()">></iron-icon>
-            <h2 id="title">Sign in</h2>
+            <h2 id="title">{{header}}</h2>
             <!--Paper elements form here-->
             <!--paper-input label="Input label" name="email" id="email"></paper-input>
             <paper-input label="Input label" name="password" id=""></paper-input-->
@@ -155,13 +155,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <input id="password" name="password" placeholder="{{field2}}" type="text">
             
             
-            <button href="javascript:%20check_empty()" id="submit">Send</button>
+            <button href="javascript:%20check_empty()" id="submit">{{submitting}}</button>
           </form>
         </div>
         <!-- Popup Div Ends Here -->
       </div>
       <!-- Display Popup Button -->
-      <button id="popup" class="sign" onclick="div_show()">Sign in</button>
+      <button id="popup" class="sign" onclick="div_show()">{{sign}}</button>
     </body>  
   </template>
 
@@ -172,6 +172,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         is: 'sign-in-form',
 
         properties: {
+          sign: {
+            type: String,
+            value: 'Sign in',
+            notify: true
+          },
+          header: {
+            type: String,
+            value: 'Sign in',
+            notify: true
+          },
           field1: {
             type: String,
             value: 'Email',
@@ -182,19 +192,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             value: 'Password',
             notify: true
           },
-          header: {
-            type: String,
-            value: 'Password',
-            notify: true
-          },
           submitting: {
             type: String,
-            value: 'Password',
-            notify: true
-          },
-          sign: {
-            type: String,
-            value: 'Password',
+            value: 'Send',
             notify: true
           }
         }
