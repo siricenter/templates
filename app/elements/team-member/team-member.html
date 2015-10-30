@@ -17,52 +17,94 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }*/
       #main-paper {
-        width: 700px;
+        /*background-color: pink;*/
+        width: 600px;
+        height: 400px;
         display: flex;
         flex-wrap: wrap;
+        align-content:center;
         justify-content: space-around;
-
+        margin:0;
       }
-      #list-content {
+      #profile-paper-content {
+        /*background-color: pink;*/
+        width: 250px;
+        height: 375px;
         display: flex;
+        flex-direction: column;
+        align-items:center;
+        justify-content:space-around;
+        margin:0px;
+      }
+      #memberImg {
+        width: 85%;
+        border: 2px double gray;
+        margin: 0;
+      }
+       #name {
+        /*background-color: pink;*/
+        font-family: Papyrus, fantasy;
+        font-size: 25px;
+        text-align: center;
+        margin: 0;
+      }
+      #info-content {
+        /*background-color: pink;*/
+        display: flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        margin:1px;
+      }
+      .title {
+        font-family: Copperplate;
+        margin: 0;
+      }
+      .info {
+        font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+        margin: 0;
       }
       #profile-content {
-        /*background-color: red;*/
+        background-color: red;
         height: 400px;
         width: 300px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        margin: 0;
       }
-      #memberImg {
-        width: 300px;
-        border: 5px solid gray;
-        
-      }
-      #name {
-        font-family: Papyrus, fantasy;
-        font-size: 25px;
-      }
-
-
-
-
     </style>
     <section id="main-content">
       <paper-material id="main-paper">
-      
-        <section id="profile-content">
-          <img id="memberImg" src="{{memberImg}}">
-          <p id="name">{{name}}</p>
-        </section>
         
-        <section id="list-content">
-          <ul id="list">
+          <paper-material id="profile-paper-content" elevation="2">
+            <img id="memberImg" src="{{memberImg}}">
+            <p id="name">{{name}}</p>
+          </paper-material>
+        
+        
+        <section id="info-content">
+          <h3 class="info title">Title</h3>
+          <p class="info">______________________________________</p>
+          <p class="info">{{title}}</p>
+          <br>
+          
+          <h3 class="info title">Phone</h3>
+          <p class="info">______________________________________</p>
+          <p class="info">{{phone}}</p>
+          <br>
+
+          <h3 class="info title">Email</h3>
+          <p class="info">______________________________________</p>
+          <p class="info">{{email}}</p>
+          <br>
+
+          <!-- <ul id="list">
             <li id="title">Title: <span>{{title}}</span></li>
             <li id="phone">{{phone}}</li>
             <li id="email">{{email}}</li>
-          </ul>
+          </ul> -->
         </section>
 
       </paper-material>
@@ -83,12 +125,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         title: {
           type: String,
-          value: 'CSR-1',
+          value: 'Customer Service Representative 1',
           notify: true
         },
         phone: {
           type: String,
-          value: '(503) 962-9838',
+          value: '(503) 962-9838 ext. 000',
           notify: true
         },
         email: {
@@ -98,7 +140,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         memberImg: {
           type: String,
-          value: 'http://fillmurray.com/303/300',
+          value: 'http://fillmurray.com/200/275',
           notify: true
         }
       }
