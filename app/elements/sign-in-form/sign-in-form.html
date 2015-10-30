@@ -10,209 +10,205 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <dom-module id="sign-in-form">
+
+<!-- CSS -->
     <style>
+      :host{  
+      }
 
-     :host{
-     
-     }
+      .sign {
+        background: var(--button-color-primary);
+        font-size: 18px;
+        border: 0;
+        width: 100px;
+        height: 45px;
+        color: #FFF;
+        text-shadow: var(--text-shadow);
+        border: 0;
+        border-bottom: 5px solid var(--button-color-secondary);
+        cursor: pointer;
+      }
 
-.sign {
-  background: var(--button-color-primary);
-  border: 0;
-  width: 100px;
-  color: #FFF;
-  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.55);
-  border: 0;
-  border-bottom: 5px solid var(--button-color-secondary);
-  cursor: pointer;
-
-}
-
-.sign:hover {
+      .sign:hover {
         animation: hover ease-in 0.1s;
         animation-fill-mode: forwards;
       } 
-
       @keyframes hover {
         from  {opacity: 1; }
         to    {opacity: 0.8; }
       }
 
-#login {
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  display: none;
-  position: fixed;
-  background: rgba(51, 51, 51, 0.6);
-  overflow: auto
-}
+      #login {
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: none;
+        position: fixed;
+        background: rgba(51, 51, 51, 0.6);
+        overflow: auto
+      }
 
-#close {
-  position: absolute;
-  right: -14px;
-  top: -14px;
-  cursor: pointer
-  
-}
+      #close {
+        position: absolute;
+        right: -14px;
+        top: -14px;
+        cursor: pointer
+      }
 
-#close:click {
-  animation: fade-out ease-in 0.3s;
-  animation-fill-mode: forwards;
-}
-
-#popupContact {
-  position: absolute;
-  opacity: 1;
-  left: 50%;
-  top: 17%;
-  margin-left: -202px;
-  animation: fade-in ease-in 0.3s;
-  animation-fill-mode: forwards;
-}
-
-iron-icon{
-  color:white;
-}
-
-form {
-  max-width: 300px;
-  min-width: 250px;
-  padding: 10px 50px;
-  border-radius: 0px;
-  background-color: #fafafa
-}
-
-h2 {
-  background-color: #ca2918;
-  color: #FFF;
-  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.55);
-  padding: 20px 35px;
-  margin: -10px -50px;
-  text-align: center;
-}
-
-@keyframes fade-in {
-  from  {opacity: 0; }
-  to    {opacity: 1; }
-}
-
-@keyframes fade-out {
-  from  {opacity: 1; }
-  to    {opacity: 0; }
-}
-
-input[type=text] {
-  width: 82%;
-  padding: 10px;
-  margin-top: 30px;
-  border: 1px solid #ccc;
-  padding-left: 40px;
-  font-size: 16px;
-}
-
-#password {
-  margin-bottom: 50px;
-}
-
-#submit {
-  text-decoration: none;
-  width: 100%;
-  text-align: center;
-  display: block;
-  background-color: var(--button-color-primary);
-  color: #fff;
-  border: 0px;
-  padding: 10px 0;
-  font-size: 20px;
-  cursor: pointer;
-  border-radius: 0px;
-  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.55);
-  border-bottom: 5px solid var(--button-color-secondary);
-  cursor: pointer;
-}
-#submit:hover {
-        animation: hover ease-in 0.1s;
+      #close:click {
+        animation: fade-out ease-in 0.3s;
         animation-fill-mode: forwards;
-      } 
+      }
 
+      #popupContact {
+        position: absolute;
+        opacity: 1;
+        left: 50%;
+        top: 17%;
+        margin-left: -202px;
+        animation: fade-in 0.3s;
+      }
 
+      iron-icon{
+        color:white;
+      }
 
-button {
-  width: 10%;
-  height: 45px;
-  border-radius: 0px;
-  background: #000000;
-  color: #fff;
-  font-size: 18px;
-  cursor: pointer
-}
+      #form {
+        max-width: 300px;
+        min-width: 250px;
+        padding: 10px 50px;
+        border-radius: 0px;
+        background-color: var(--primary-background-color);
+      }
 
+      #title {
+        background-color: var(--default-tertiary-color);
+        color: #FFF;
+        text-shadow: var(--text-shadow);
+        padding: 20px 35px;
+        margin: -10px -50px;
+        text-align: center;
+      }
 
+      @keyframes fade-in {
+        from  {opacity: 0; }
+        to    {opacity: 1; }
+      }
 
+      @keyframes fade-out {
+        from  {opacity: 1; }
+        to    {opacity: 0; }
+      }
+
+      input[type=text] {
+        width: 82%;
+        padding: 10px;
+        margin-top: 30px;
+        border: var(--drawer-border-color);
+        padding-left: 40px;
+        font-size: 16px;
+      }
+
+      #password {
+        margin-bottom: 50px;
+      }
+
+      #submit {
+        text-decoration: none;
+        width: 100%;
+        text-align: center;
+        display: block;
+        background-color: var(--button-color-primary);
+        color: #fff;
+        border: 0px;
+        padding: 10px 0;
+        font-size: 20px;
+        cursor: pointer;
+        border-radius: 0px;
+        text-shadow: var(--text-shadow);
+        border-bottom: 5px solid var(--button-color-secondary);
+        cursor: pointer;
+      }
+      #submit:hover {
+              animation: hover ease-in 0.1s;
+              animation-fill-mode: forwards;
+            } 
     </style>
+
+<!-- HTML -->
   <template>
+    <body id="body" style="overflow:hidden;">
+      <div id="login">
+        <!-- Popup Div Starts Here -->
+        <div id="popupContact">
+          <!-- Contact Us Form -->
+          <form action="#" id="form" method="post" name="form">
+            <iron-icon id="close" class="highlight-off" icon="highlight-off" onclick="div_hide()">></iron-icon>
+            <h2 id="title">Sign in</h2>
+            <!--Paper elements form here-->
+            <!--paper-input label="Input label" name="email" id="email"></paper-input>
+            <paper-input label="Input label" name="password" id=""></paper-input-->
 
-
-
-<body id="body" style="overflow:hidden;">
-  <div id="login">
-    <!-- Popup Div Starts Here -->
-    <div id="popupContact">
-      <!-- Contact Us Form -->
-      <form action="#" id="form" method="post" name="form">
-        <iron-icon id="close" class="highlight-off" icon="highlight-off" onclick="div_hide()">></iron-icon>
-        <h2>Sign in</h2>
-        <!--Paper elements form here-->
-        <input id="email" name="email" placeholder="Email" type="text">
-        <input id="password" name="password" placeholder="Password" type="text">
-        
-        
-        <button href="javascript:%20check_empty()" id="submit">Send</button>
-      </form>
-    </div>
-    <!-- Popup Div Ends Here -->
-  </div>
-  <!-- Display Popup Button -->
-  <button id="popup" class="sign" onclick="div_show()">Sign in</button>
-</body>
-
-
-
-    
+            <input id="email" name="email" placeholder="{{field1}}" type="text">
+            <input id="password" name="password" placeholder="{{field2}}" type="text">
+            
+            
+            <button href="javascript:%20check_empty()" id="submit">Send</button>
+          </form>
+        </div>
+        <!-- Popup Div Ends Here -->
+      </div>
+      <!-- Display Popup Button -->
+      <button id="popup" class="sign" onclick="div_show()">Sign in</button>
+    </body>  
   </template>
+
+<!-- JAVASCRIPT -->
   <script>
     (function() {
       Polymer({
         is: 'sign-in-form',
 
         properties: {
-          main: {
+          field1: {
             type: String,
-            value: 'Template for call to action.',
+            value: 'Email',
             notify: true
           },
-          button: {
+          field2: {
             type: String,
-            value: 'Template button text',
+            value: 'Password',
+            notify: true
+          }
+          header: {
+            type: String,
+            value: 'Password',
+            notify: true
+          }
+          submitting: {
+            type: String,
+            value: 'Password',
+            notify: true
+          }
+          signButton: {
+            type: String,
+            value: 'Password',
             notify: true
           }
         }
       });
     })();
 
-
-//Function To Display Popup
-function div_show() {
-document.getElementById('login').style.display = "block";
-}
-//Function to Hide Popup
-function div_hide(){
-document.getElementById('login').style.display = "none";
-}
-
+    //Function To Display Popup
+    function div_show() {
+    document.getElementById('login').style.display = "block";
+    }
+    //Function to Hide Popup
+    function div_hide(){
+    document.getElementById('login').style.display = "none";
+    }
   </script>
 
 
