@@ -28,18 +28,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       #profile-paper-content {
         /*background-color: pink;*/
-        width: 250px;
-        height: 375px;
+        width: 200px;
+        height: 350px;
         display: flex;
         flex-direction: column;
         align-items:center;
         justify-content:space-around;
         margin:0px;
       }
+      #profile-paper-content:hover{
+        elevation:5;
+      }
       #memberImg {
         width: 85%;
         border: 2px double gray;
-        margin: 0;
+        margin: 0;        
       }
        #name {
         /*background-color: pink;*/
@@ -48,8 +51,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-align: center;
         margin: 0;
       }
-      #info-content {
+      #info-content-box {
         /*background-color: pink;*/
+        display: flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        margin:1px;
+      }
+      .info-content{
         display: flex;
         flex-direction:column;
         align-items:center;
@@ -74,37 +84,146 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         justify-content: center;
         margin: 0;
       }
+
+      /*Hover stuff*/
+
+      /*Hover Grow*/
+      .hvr-grow {
+        /*display: inline-block;*/
+        vertical-align: middle;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-property: transform;
+        transition-property: transform;
+      }
+      .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+      }
+
+      /*Hover Fade*/
+      .hvr-fade {
+        /*display: inline-block;*/
+        vertical-align: middle;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -moz-osx-font-smoothing: grayscale;
+        overflow: hidden;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-property: color, background-color;
+        transition-property: color, background-color;
+      }
+      .hvr-fade:hover, .hvr-fade:focus, .hvr-fade:active {
+        background-color: #2098d1;
+        color: white;
+      }
+
+            /* Shadow */
+      .hvr-shadow {
+        /*display: inline-block;*/
+        vertical-align: middle;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-property: box-shadow;
+        transition-property: box-shadow;
+      }
+      .hvr-shadow:hover, .hvr-shadow:focus, .hvr-shadow:active {
+        box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+      }
+
+      /*Grow Shadow*/
+      .hvr-grow-shadow {
+        /*display: inline-block;*/
+        vertical-align: middle;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-property: box-shadow, transform;
+        transition-property: box-shadow, transform;
+      }
+      .hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active {
+        box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+      }
+
+      /* Glow */
+      .hvr-glow {
+        /*display: inline-block;*/
+        vertical-align: middle;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-property: box-shadow;
+        transition-property: box-shadow;
+      }
+      .hvr-glow:hover, .hvr-glow:focus, .hvr-glow:active {
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+      }
     </style>
     <section id="main-content">
       <paper-material id="main-paper">
-        
-          <paper-material id="profile-paper-content" elevation="2">
-            <img id="memberImg" src="{{memberImg}}">
+          
+          <paper-material id="profile-paper-content" class="hvr-grow" elevation="2">
+            <img id="memberImg"  src="{{memberImg}}">
             <p id="name">{{name}}</p>
           </paper-material>
         
         
-        <section id="info-content">
-          <h3 class="info title">Title</h3>
-          <p class="info">______________________________________</p>
-          <p class="info">{{title}}</p>
-          <br>
+        <section id="info-content-box">
+          <div class="info-content hvr-fade">
+            <h3 class="info title">Title</h3>
+            <p class="info">{{title}}</p>
+            <p class="info">______________________________________</p>
+            <br>
+          </div>
+
+          <div class="info-content hvr-grow">
+            <h3 class="info title">Department</h3>
+            <p class="info">{{department}}</p>
+            <p class="info">______________________________________</p>
+            <br>
+          </div>
           
-          <h3 class="info title">Phone</h3>
-          <p class="info">______________________________________</p>
-          <p class="info">{{phone}}</p>
-          <br>
+          <div class="info-content hvr-shadow">
+            <h3 class="info title">Phone</h3>
+            <p class="info">{{phone}}</p>
+            <p class="info">______________________________________</p>
+            <br>
+          </div>
 
-          <h3 class="info title">Email</h3>
-          <p class="info">______________________________________</p>
-          <p class="info">{{email}}</p>
-          <br>
-
-          <!-- <ul id="list">
-            <li id="title">Title: <span>{{title}}</span></li>
-            <li id="phone">{{phone}}</li>
-            <li id="email">{{email}}</li>
-          </ul> -->
+          <div class="info-content hvr-glow">
+            <h3 class="info title">Email</h3>          
+            <p class="info">{{email}}</p>
+            <p class="info">______________________________________</p>
+            <br>
+          <div class="info-content">
         </section>
 
       </paper-material>
@@ -120,12 +239,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       properties: {
         name: {
           type: String,
-          value: 'Austin Lee',
+          value: 'Bill Murray',
           notify: true
         },
         title: {
           type: String,
           value: 'Customer Service Representative 1',
+          notify: true
+        },
+        department: {
+          type: String,
+          value: 'Customer Service',
           notify: true
         },
         phone: {
