@@ -50,7 +50,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    <h2 >{{title}}</h2>
   </div>
   <div id="imageLocation">
-    <img src={{img_path}} >    
+    <img src={{imgPath}} >    
   </div>
   <div id="text">
     <div id="toggleParagraph">
@@ -58,7 +58,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <h2 >{{title}}</h2>
       </div>
       <div id="toggleImage" >
-        <img src={{img_path}} >
+        <img src={{imgPath}} >
       </div>
     </div>
     <p >em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -87,17 +87,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         value: '',
         notify: true
       },
-      card_elevation: {
+      cardElevation: {
         type: String,
         value: "1",
         notify: true
       },
-      img_position: {
+      imgPosition: {
         type: String,
         value: 'top',
         notify: true
       },
-      img_path:{
+      imgPath:{
         type: String,
         value: 'http://lorempixel.com/350/350/city',
         notify: true
@@ -116,8 +116,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       // }
       ready:function(){
-        console.log(this.img_position);
-        switch(this.img_position){
+        console.log(this.imgPosition);
+        switch(this.imgPosition){
           case 'top':
                   this.$.container.style['flex-direction'] = 'column'
                   this.$.container.style['align-items'] = 'center'
@@ -177,7 +177,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   this.$.text.style['order'] = 3;
                   this.$.toggleHide.style['display'] = 'none'; //maybe do a height 0; set overflow to none
                   this.$.toggleParagraph.style['display'] = 'block';
-                  this.$.text.style['flex-grow'] = 5;
+                  this.$.text.style['flex-grow'] = 3;
                   break;
           default:
                   this.$.imageLocation.style.textAlign = '';
