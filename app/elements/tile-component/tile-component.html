@@ -39,6 +39,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   #toggleImage{
     display:none;
   }
+  h2{
+    margin-bottom:5px;
+  }
 }
 </style>
 <paper-material id="tile-content" elevation="{{cardElevation}}">
@@ -132,14 +135,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   this.$.text.style['order'] = 2;
                   break;
            case 'topLeft':
+                  this.$.toggleImage.style['order'] = 1;
+                  this.$.title.style['order'] = 2;
+                  this.$.title.style['padding-left'] = '10%';
                   this.$.container.style['flex-direction'] = 'row';
-                  this.$.imageLocation.style['order'] = 1;
-                  this.$.toggleHide.style['order'] = 2;
-                  this.$.text.style['order'] = 3;
                   this.$.toggleHide.style['display'] = 'none'; //maybe do a height 0; set overflow to none
-                  this.$.toggleParagraph.style['display'] = 'block';
+                  this.$.toggleParagraph.style['display'] = 'flex';
                    this.$.text.style['flex-basis'] = 'auto';
-                  this.$.imageLocation.style['flex-basis'] = 'auto';
+                  this.$.imageLocation.style['display'] = 'none';
+                   this.$.toggleImage.style['display'] = 'flex';
+                   this.$.title.style['display'] = 'flex';
+                   this.$.title.style['flex-grow'] = '5';
+                   this.$.title.style['align-self'] = 'flex-end';
+                   this.$.title.style['margin'] = '0px';
                   break;
           case 'topRight':
                   this.$.container.style['flex-direction'] = 'row';
@@ -148,9 +156,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                    this.$.text.style['flex-basis'] = 'auto';
                   this.$.imageLocation.style['display'] = 'none';
                    this.$.toggleImage.style['display'] = 'flex';
+                   this.$.title.style['display'] = 'flex';
                    this.$.title.style['flex-grow'] = '5';
-
-
+                   this.$.title.style['align-self'] = 'flex-end';
+                   this.$.title.style['margin'] = '0px';
                   break;
           case 'left':
                   this.$.container.style['flex-direction'] = 'row';
@@ -168,7 +177,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   this.$.text.style['order'] = 3;
                   this.$.toggleHide.style['display'] = 'none'; //maybe do a height 0; set overflow to none
                   this.$.toggleParagraph.style['display'] = 'block';
-                  this.$.text.style['flex-grow'] = 3;
+                  this.$.text.style['flex-grow'] = 5;
                   break;
           default:
                   this.$.imageLocation.style.textAlign = '';
