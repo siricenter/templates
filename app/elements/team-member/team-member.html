@@ -13,21 +13,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="team-member">
   <template>
     <style>
-    /*  :host {
+      :host {
         display: block;
-      }*/
+      }
       a:link {
-        color:black;
+        color:var(--primary-text-color);
         text-decoration: none;
       }
       a:visited {
+        color:var(--primary-text-color);
         text-decoration: none;
       }
       a:hover {
-        text-decoration: underline;
+        text-decoration: none;
       }
       a:active {
-        text-decoration: underline;
+        text-decoration: none;
+      }
+      iron-image {
+        width: 100%;
+        height:250px;
       }
       #main-paper {
         /*background-color: pink;*/
@@ -35,9 +40,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         height: 400px;
         display: flex;
         flex-wrap: wrap;
-        align-content:center;
+        flex-direction:row;
+        align-items:center;
         justify-content: space-around;
-        margin:0;
+        margin:0px;
       }
       #profile-paper-content {
         /*background-color: pink;*/
@@ -47,14 +53,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         flex-direction: column;
         align-items:center;
         justify-content:space-around;
-        margin:0px;
+        /*margin:25px;*/
       }
-      #memberImg {
-        width: 85%;
-        border: 2px double gray;
-        margin: 0;        
-      }
-       #name {
+      #name {
         /*background-color: pink;*/
         font-family: Papyrus, fantasy;
         font-size: 25px;
@@ -134,7 +135,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         transition-property: color, background-color;
       }
       .hvr-fade:hover, .hvr-fade:focus, .hvr-fade:active {
-        background-color: #2098d1;
+        background-color: var(--light-primary-color);
         color: white;
       }
 
@@ -200,15 +201,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <section id="main-content">
       <paper-material id="main-paper">
           
-          <paper-material id="profile-paper-content" class="hvr-grow" elevation="2">
-            <img id="memberImg"  src="{{memberImg}}">
+          <paper-material id="profile-paper-content" class="hvr-grow" elevation="0">
+            <iron-image id="memberImg" sizing="contain"  src="{{memberImg}}"></iron-image>
+
+            <!-- <img id="memberImg"  src="{{memberImg}}"> -->
             <p id="name">{{name}}</p>
           </paper-material>
         
         
         <section id="info-content-box">
           <a href="">
-            <div onclick="seeTitle()" class="info-content hvr-glow">
+            <div on-tap="seeTitle" class="info-content hvr-fade">
               <h3 class="info title">Title</h3>
               <p class="info">{{title}}</p>
               <p class="info">______________________________________</p>
@@ -217,7 +220,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </a>
 
           <a href="">
-            <div onclick="seeDepartment()" class="info-content hvr-glow">
+            <div on-tap="seeDepartment" class="info-content hvr-fade">
               <h3 class="info title">Department</h3>
               <p class="info">{{department}}</p>
               <p class="info">______________________________________</p>
@@ -226,7 +229,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </a>
           
           <a href="">
-            <div onclick="phoneContact()" class="info-content hvr-glow">
+            <div on-tap="phoneContact" class="info-content hvr-fade">
               <h3 class="info title">Phone</h3>
               <p class="info">{{phone}}</p>
               <p class="info">______________________________________</p>
@@ -235,7 +238,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </a>
 
           <a href="">
-            <div onclick="emailContact()" class="info-content hvr-glow">
+            <div on-tap="emailContact" class="info-content hvr-fade">
               <h3 class="info title">Email</h3>          
               <p class="info">{{email}}</p>
               <p class="info">______________________________________</p>
@@ -285,25 +288,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           value: 'http://fillmurray.com/200/275',
           notify: true
         }
-      }
-      
 
-      
+      },
+       seeTitle: function() {
+        alert('Clicking here will show you other employees with this title.');
+      },
+      seeDepartment: function() {
+        alert('Clicking here will show you other employees in this department.')
+      },
+      phoneContact: function() {
+        alert('Clicking here will call this employee via soft phone, skype, facetime etc.')
+      },
+      emailContact: function() {
+        alert('Clicking here will open a new email to this employee.')
+      }
 
     });
 
-  })();
-  function seeTitle(){
-        window.alert("Clicking here will show you other employees with this title.");
-      }
-  function seeDepartment(){
-        window.alert("Clicking here will show you other employees in this department.");
-      }
-  function phoneContact(){
-        window.alert("Clicking here will call this employee via soft phone, skype, facetime etc.");
-      }
-  function emailContact(){
-        window.alert("Clicking here will open a new email to this employee.");
-      }     
+  })();   
   </script>
 </dom-module>
