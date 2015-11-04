@@ -16,6 +16,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     /*  :host {
         display: block;
       }*/
+      a:link {
+        color:black;
+        text-decoration: none;
+      }
+      a:visited {
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      a:active {
+        text-decoration: underline;
+      }
       #main-paper {
         /*background-color: pink;*/
         width: 600px;
@@ -35,9 +48,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         align-items:center;
         justify-content:space-around;
         margin:0px;
-      }
-      #profile-paper-content:hover{
-        elevation:5;
       }
       #memberImg {
         width: 85%;
@@ -197,33 +207,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         
         
         <section id="info-content-box">
-          <div class="info-content hvr-fade">
-            <h3 class="info title">Title</h3>
-            <p class="info">{{title}}</p>
-            <p class="info">______________________________________</p>
-            <br>
-          </div>
+          <a href="">
+            <div onclick="seeTitle()" class="info-content hvr-glow">
+              <h3 class="info title">Title</h3>
+              <p class="info">{{title}}</p>
+              <p class="info">______________________________________</p>
+              <br>
+            </div>
+          </a>
 
-          <div class="info-content hvr-grow">
-            <h3 class="info title">Department</h3>
-            <p class="info">{{department}}</p>
-            <p class="info">______________________________________</p>
-            <br>
-          </div>
+          <a href="">
+            <div onclick="seeDepartment()" class="info-content hvr-glow">
+              <h3 class="info title">Department</h3>
+              <p class="info">{{department}}</p>
+              <p class="info">______________________________________</p>
+              <br>
+            </div>
+          </a>
           
-          <div class="info-content hvr-shadow">
-            <h3 class="info title">Phone</h3>
-            <p class="info">{{phone}}</p>
-            <p class="info">______________________________________</p>
-            <br>
-          </div>
+          <a href="">
+            <div onclick="phoneContact()" class="info-content hvr-glow">
+              <h3 class="info title">Phone</h3>
+              <p class="info">{{phone}}</p>
+              <p class="info">______________________________________</p>
+              <br>
+            </div>
+          </a>
 
-          <div class="info-content hvr-glow">
-            <h3 class="info title">Email</h3>          
-            <p class="info">{{email}}</p>
-            <p class="info">______________________________________</p>
-            <br>
-          <div class="info-content">
+          <a href="">
+            <div onclick="emailContact()" class="info-content hvr-glow">
+              <h3 class="info title">Email</h3>          
+              <p class="info">{{email}}</p>
+              <p class="info">______________________________________</p>
+              <br>
+            </div>
+          </a>
         </section>
 
       </paper-material>
@@ -268,8 +286,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           notify: true
         }
       }
+      
+
+      
 
     });
+
   })();
+  function seeTitle(){
+        window.alert("Clicking here will show you other employees with this title.");
+      }
+  function seeDepartment(){
+        window.alert("Clicking here will show you other employees in this department.");
+      }
+  function phoneContact(){
+        window.alert("Clicking here will call this employee via soft phone, skype, facetime etc.");
+      }
+  function emailContact(){
+        window.alert("Clicking here will open a new email to this employee.");
+      }     
   </script>
 </dom-module>
