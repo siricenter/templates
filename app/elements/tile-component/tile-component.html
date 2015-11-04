@@ -11,88 +11,95 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <dom-module id="tile-component">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-      #tile-content {
-        padding: 15px;
-      }
-      #imageLocation{
-        text-align:center;
-        flex:2;
-      }
-      #text{
-        text-align:left;
-        flex:1;
-      }
-      #container{
-        display:flex;
-      }
-      #toggleHide{
-        display:block;
-      }
-       #toggleParagraph{
-        display:none;
-      }
-      }
-    </style>
-    <paper-material id="tile-content" elevation="{{cardElevation}}">
-      <div id="toggleHide">
+<template>
+  <style>
+  :host {
+    display: block;
+  }
+  #tile-content {
+    padding: 15px;
+  }
+  #imageLocation{
+    
+    flex:2;
+  }
+  #text{
+    text-align:left;
+    flex:1;
+  }
+  #container{
+    display:flex;
+  }
+  #toggleHide{
+    display:block;
+  }
+  #toggleParagraph{
+    display:none;
+  }
+  #toggleImage{
+    display:none;
+  }
+}
+</style>
+<paper-material id="tile-content" elevation="{{cardElevation}}">
+<div id="container">
+  <div id="toggleHide">
+   <h2 >{{title}}</h2>
+  </div>
+  <div id="imageLocation">
+    <img src={{img_path}} >    
+  </div>
+  <div id="text">
+    <div id="toggleParagraph">
+      <div id="title">
         <h2 >{{title}}</h2>
-       </div>
-        <h2>{{img_position}}</h2>
-        <div id="container">
-        <div id="imageLocation">
-          <img src={{img_path}} >    
       </div>
-      <div id="text">
-        <div id="toggleParagraph">
-          <h2 >{{title}}</h2>
-        </div>
-           <p >em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mol</p>
+      <div id="toggleImage" >
+        <img src={{img_path}} >
       </div>
     </div>
-    </paper-material>
-  </template>
-  <content>
-    
-  </content>
-  <script>
-  (function() {
-    'use strict';
+    <p >em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mol</p>
+    </div>
+  </div>
+</paper-material>
+</template>
+<content>
 
-    Polymer({
-      is: 'tile-component',
+</content>
+<script>
+(function() {
+  'use strict';
 
-      properties: {
-        title: {
-          type: String,
-          value: '',
-          notify: true
-        },
-        card_elevation: {
-          type: String,
-          value: "1",
-          notify: true
-        },
-        img_position: {
-          type: String,
-          value: 'top',
-          notify: true
-        },
-        img_path:{
-          type: String,
-          value: 'http://lorempixel.com/350/350/city',
-          notify: true
-        }
+  Polymer({
+    is: 'tile-component',
+
+    properties: {
+      title: {
+        type: String,
+        value: '',
+        notify: true
       },
+      card_elevation: {
+        type: String,
+        value: "1",
+        notify: true
+      },
+      img_position: {
+        type: String,
+        value: 'top',
+        notify: true
+      },
+      img_path:{
+        type: String,
+        value: 'http://lorempixel.com/350/350/city',
+        notify: true
+      }
+    },
 
       // ready:{
       //   function:hideImage(){
@@ -107,53 +114,75 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // }
       ready:function(){
         console.log(this.img_position);
-          switch(this.img_position){
-            case 'top':
-                  this.$.imageLocation.style.textAlign = 'center';
-                  this.$.container.style['display'] = 'block';
+        switch(this.img_position){
+          case 'top':
+                  this.$.container.style['flex-direction'] = 'column'
+                  this.$.container.style['align-items'] = 'center'
+                  this.$.toggleHide.style['order'] = 2;
+                  this.$.text.style['order'] = 3;
+                  break;
+           case 'middle':
+                  this.$.container.style['flex-direction'] = 'column'
+                  this.$.container.style['align-items'] = 'center'
+                  break;
+          case 'bottom':
+                  this.$.container.style['flex-direction'] = 'column-reverse';
+                  this.$.container.style['align-items'] = 'center'
+                  this.$.toggleHide.style['order'] = 3;
+                  this.$.text.style['order'] = 2;
+                  break;
+           case 'topLeft':
+                  this.$.container.style['flex-direction'] = 'row';
+                  this.$.imageLocation.style['order'] = 1;
+                  this.$.toggleHide.style['order'] = 2;
+                  this.$.text.style['order'] = 3;
                   this.$.toggleHide.style['display'] = 'none'; //maybe do a height 0; set overflow to none
                   this.$.toggleParagraph.style['display'] = 'block';
+                   this.$.text.style['flex-basis'] = 'auto';
+                  this.$.imageLocation.style['flex-basis'] = 'auto';
                   break;
-            case 'middle':
-                  this.$.imageLocation.style.textAlign = 'center';
-                  this.$.container.style['display'] = 'block';
-                  break;
-            case 'bottom':
-                  this.$.imageLocation.style.textAlign = 'center';
-                  this.$.container.style['flex-direction'] = 'column-reverse';
-                  break;
-            case 'topLeft':
-                  this.$.imageLocation.style.textAlign = 'left';
-                  this.$.container.style['display'] = 'block';
-                  this.$.container.style['align-content'] = 'flex-start';
-                  this.$.text.style['flex-grow'] = 4;
-                  
-                  break;
-            case 'topRight':
-                   this.$.imageLocation.style.textAlign = 'center';
-                   this.$.container.style['flex-direction'] = 'row-reverse';
-                   this.$.container.style['align-content'] = 'flex-start';
-                   this.$.text.style['flex-grow'] = 4;
-                  break;
-            case 'left':
-                  break;
-            case 'right':
-                   this.$.container.style['flex-direction'] = 'row-reverse'
-                  break;
-            default:
-                  this.$.imageLocation.style.textAlign = '';
+          case 'topRight':
+                  this.$.container.style['flex-direction'] = 'row';
+                  this.$.toggleHide.style['display'] = 'none'; //maybe do a height 0; set overflow to none
+                  this.$.toggleParagraph.style['display'] = 'flex';
+                   this.$.text.style['flex-basis'] = 'auto';
+                  this.$.imageLocation.style['display'] = 'none';
+                   this.$.toggleImage.style['display'] = 'flex';
+                   this.$.title.style['flex-grow'] = '5';
 
-          }
-        }
-      
+
+                  break;
+          case 'left':
+                  this.$.container.style['flex-direction'] = 'row';
+                  this.$.imageLocation.style['order'] = 1;
+                  this.$.toggleHide.style['order'] = 2;
+                  this.$.text.style['order'] = 3;
+                  this.$.toggleHide.style['display'] = 'none'; //maybe do a height 0; set overflow to none
+                  this.$.toggleParagraph.style['display'] = 'block';
+                  this.$.text.style['flex-grow'] = 3;
+                  break;
+         case 'right':
+                  this.$.container.style['flex-direction'] = 'row-reverse'
+                  this.$.imageLocation.style['order'] = 1;
+                  this.$.toggleHide.style['order'] = 2;
+                  this.$.text.style['order'] = 3;
+                  this.$.toggleHide.style['display'] = 'none'; //maybe do a height 0; set overflow to none
+                  this.$.toggleParagraph.style['display'] = 'block';
+                  this.$.text.style['flex-grow'] = 3;
+                  break;
+          default:
+                  this.$.imageLocation.style.textAlign = '';
+                }
+              }
+
 
       /*
         custome css --google it
-      */
+        */
 
-    });
-  })();
-  </script>
+      });
+})();
+</script>
 </dom-module>
 
 <!-- no image, middle, bottom, top, topL, topR, L, R, for the image part   -->
