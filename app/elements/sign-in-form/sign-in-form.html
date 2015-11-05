@@ -16,6 +16,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host{  
       }
 
+      .content-wrapper > ::content .input {
+        width: 82%;
+        padding: 10px;
+        margin-top: 30px;
+        border: var(--drawer-border-color);
+        padding-left: 40px;
+        font-size: 16px;
+      }
       .sign {
         background: #c0c0c0;
         font-size: 18px;
@@ -67,18 +75,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         overflow: auto
       }
 
-      #register {
-        z-index: 1;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        display: none;
-        position: fixed;
-        background: rgba(51, 51, 51, 0.6);
-        overflow: auto
-      }
-
       #close {
         position: absolute;
         right: -14px;
@@ -103,16 +99,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color:white;
       }
 
-      #form_log, #form_reg {
-        max-width: 300px;
-        min-width: 250px;
+      #form {
+        width: 300px;
         padding: 10px 50px;
         padding-bottom: 30px;
         border-radius: 0px;
         background-color: var(--primary-background-color);
       }
 
-      #title {
+      #titlelog, #titlereg {
         background-color: var(--default-tertiary-color);
         color: var(--text-primary-color);
         text-shadow: var(--text-shadow);
@@ -131,7 +126,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         to    {opacity: 0; }
       }
 
-      input {
+      .input {
         width: 82%;
         padding: 10px;
         margin-top: 30px;
@@ -140,10 +135,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-size: 16px;
       }
 
-      .end{
-        margin-bottom: 50px;
-      }
-
+      
       #submit {
         text-decoration: none;
         width: 100%;
@@ -159,11 +151,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-shadow: var(--text-shadow);
         border-bottom: 5px solid var(--button-color-secondary);
         cursor: pointer;
+        margin-top: 50px;
       }
       #submit:hover {
               animation: hover ease-in 0.1s;
               animation-fill-mode: forwards;
             } 
+
+      .right {
+        text-align: right;
+      }
+
+      .errorMsg {
+        color: red;
+        font-style: italic;
+      }
+
     </style>
 
 <!-- HTML -->
@@ -175,58 +178,42 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <!-- Popup Div Starts Here -->
         <div id="popupContact">
           <!-- Contact Us Form -->
-          <form id="form_log" name="form">
-            <iron-icon id="close" class="highlight-off" icon="highlight-off" onclick="div_hide()">></iron-icon>
-            <h2 id="title" class="signin">{{header}}</h2>
-            <!--Paper elements form here-->
-            <!-- content placed here -->
-            <!-- use javascript to loop through each item in the form and recieve the information. -->
-            <!-- if statement could be used to flip between login and register forms -->
-            <input id="email" name="email" placeholder="{{field1}}" class="signin" type="text">
-            <input id="password" name="password" class="end" placeholder="{{field2}}" class="signin" type="password">
-          
-            <content select=".login"></content>
+         <!--  <form id="form_log" name="form" onsubmit="find_elements(this)"> -->
+            <div id="form" name="form" >
+              <iron-icon id="close" class="highlight-off" icon="highlight-off" onclick="div_hide()">></iron-icon>
+              <h2 id="titlelog">{{signInHeader}}</h2>
+              <h2 id="titlereg">{{regHeader}}</h2>
 
-            <button id="submit">{{submitting}}</button>
-            <p class="signin"><i>Don't have an account? <a href="javascript:switch_to_reg()">Register</a></i></p>
+              <div id="sign_in">
+                <input class="input" id="email" name="email" placeholder="{{signInEmail}}" type="text">
+                <div class="content-wrapper" name="test"> <content name="TEST" select="#login"></content></div>
+                <input class="input" id="password" name="password" placeholder="{{signInPassword}}" type="password">
+              </div>
+
+              <div id="register">
+                <input class="input" id="username" name="email" placeholder="{{regEmail}}" type="text">
+                <input class="input" id="password" name="password" placeholder="Password" type="password">
+                <input class="input" id="confirm_password" name="confirm_password" placeholder="Confirm Password" type="password">
+                <div class="content-wrapper"> <content select="#register"></content></div>
+              </div>
+
+              <p id="errorMsgSign" class="errorMsg"></p>
+              <p id="errorMsgReg" class="errorMsg"></p>
+              <button id="submit" onclick="return find_elements()">{{submitButton}}</button>
+              <p id="switch_log"><i>Don't have an account? <a href="javascript:switch_to_reg()">Register</a></i></p>
+              <p id="switch_reg"><i>Already have an account? <a href="javascript:switch_to_login()">Sign in</a></i></p>
             <!-- Add Google, facebook, ect. later -->
-          </form>
+          </div>
         </div>
       </div>
-<!-- END LOGIN -->
 
-<!-- REGISTER PORTION STARTS HERE -->
-      <div id="register">
-        <!-- Popup Div Starts Here -->
-        <div id="popupContact">
-          <!-- Contact Us Form -->
-          <form id="form_reg" name="form">
-            <iron-icon id="close" class="highlight-off" icon="highlight-off" onclick="div_hide_reg()">></iron-icon>
-            <h2 id="title">Register</h2>
-            <!--Paper elements form here-->
-            <!-- content placed here -->
-            <!-- use javascript to loop through each item in the form and recieve the information. -->
-            <input id="username" name="username" placeholder="Username" type="text">
-            <input id="email" name="email" placeholder="Email" type="text">
-            <input id="password" name="password" placeholder="Password" type="password">
-            <input id="confirm_password" name="confirm_password" class="end" placeholder="Confirm Password" type="password">
-
-            <content select=".register"></content>
-
-            <button id="submit">Register</button>
-            <p><i>Already have an account? <a href="javascript:switch_to_login()">Sign in</a></i></p>
-            <!-- Add Google, facebook, ect. later -->
-          </form>
-        </div>
-<!-- END REGISTER -->
-
+      <div class="right">
+        <button id="popup" class="sign" onclick="div_show()">{{signInButton}}</button>
+        <button id="popup" class="register" onclick="div_show_reg()">{{regButton}}</button>
       </div>
-      <!-- Display Popup Button -->
-      <button id="popup" class="sign" onclick="div_show()">{{sign}}</button>
-      <button id="popup" class="register" onclick="div_show_reg()">{{reg}}</button>
-
     </body>  
   </template>
+<!-- END LOGIN -->
 
 <!-- JAVASCRIPT -->
   <script>
@@ -235,32 +222,42 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         is: 'sign-in-form',
 
         properties: {
-          sign: {
+          signInButton: {
             type: String,
             value: 'Sign in',
             notify: true
           },
-          reg: {
+          regButton: {
             type: String,
             value: 'Register',
             notify: true
           },
-          header: {
+          signInHeader: {
             type: String,
             value: 'Sign in',
             notify: true
           },
-          field1: {
+          regHeader: {
             type: String,
-            value: 'Email',
+            value: 'Register',
             notify: true
           },
-          field2: {
+          signInEmail: {
+            type: String,
+            value: 'Email/Username',
+            notify: true
+          },
+          regEmail: {
+            type: String,
+            value: 'Email/Username',
+            notify: true
+          },
+          signInPassword: {
             type: String,
             value: 'Password',
             notify: true
           },
-          submitting: {
+          submitButton: {
             type: String,
             value: 'Send',
             notify: true
@@ -273,74 +270,102 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     var formId = 0;
     function div_show() {
       formId = 0;
+      div_hide_reg();
       document.getElementById('login').style.display = "block";
+      document.getElementById('sign_in').style.display = "block";
+      document.getElementById('switch_log').style.display = "block";
       document.getElementById("email").focus();
+      document.getElementById('titlelog').style.display = "block";
+      document.getElementById('errorMsgSign').style.display = "block";
     }
     function div_show_reg() {
       formId = 1;
+      div_hide();
+      document.getElementById('login').style.display = "block";
       document.getElementById('register').style.display = "block";
+      document.getElementById('switch_reg').style.display = "block";
       document.getElementById("username").focus();
+      document.getElementById('titlereg').style.display = "block";
+      document.getElementById('errorMsgReg').style.display = "block";
     }
 
     //Functions to Hide Popup
-    function div_hide(){
+    function div_hide() {
+      document.getElementById('titlelog').style.display = "none";
+      document.getElementById('sign_in').style.display = "none";
       document.getElementById('login').style.display = "none";
-      find_elements();
+      document.getElementById('switch_log').style.display = "none";
+      document.getElementById('errorMsgSign').style.display = "none";
+      
     }
-    function div_hide_reg(){
+    function div_hide_reg() {
+      document.getElementById('titlereg').style.display = "none";
       document.getElementById('register').style.display = "none";
-      find_elements();
+      document.getElementById('login').style.display = "none";
+      document.getElementById('switch_reg').style.display = "none";
+      document.getElementById('errorMsgReg').style.display = "none";
+      
     }
     
     //Functions to switch between popups
-    function switch_to_login(){
+    function switch_to_login() {
       div_hide_reg();
       div_show();
     }
-    function switch_to_reg(){
+    function switch_to_reg() {
       div_hide();
       div_show_reg();
     }
 
     function find_elements() {
+      
     
+    var errorMsg = "";
 
-    if (formId === 0) {
-      var form = {
-        username: document.forms[formId][0].value,
-        password: document.forms[formId][1].value
-      }
-    }
-    else {
-    var form = [];
-    var length = document.forms[formId].length; 
-     // for(var i = 0; i < length; i++) {
-
-      for(var i = 0; i < length; i++) {
-        if (document.forms[formId][i].id === 'submit') 
-           break;
-        if (i === 0) {
-          form[i] = {
-            name: document.forms[formId][i].name,
-            value: document.forms[formId][i].value
+    if(formId === 0) {
+      var form = [];
+      var getElements = document.getElementById("sign_in").children;
+      for(var i = 0; i < getElements.length; i++) {
+        if(getElements[i].tagName != 'DIV') {
+          if (getElements[i].value === null || getElements[i].value === "") {
+            errorMsg = getElements[i].placeholder + " has not been filled out.";
+            document.querySelector("#errorMsgSign").innerHTML = errorMsg;
+            return false;
+          }
+          else {
+            form.push({
+              name: getElements[i].name,
+              value: getElements[i].value
+            });
           }
         }
-        else {
-          form.push({
-            name: document.forms[formId][i].name,
-            value: document.forms[formId][i].value
-          });
+      }
+      window.alert(form[1].name);
+      return true;
+    }
+    else {
+      var form = [];
+      var getElements = document.getElementById("register").children; 
+      for(var i = 0; i < getElements.length; i++) {
+        if(getElements[i].tagName != 'DIV') {
+          if(getElements[i].tagName != 'DIV') {
+            if (getElements[i].value === null || getElements[i].value === "") {
+              errorMsg = getElements[i].placeholder + " has not been filled out.";
+              document.querySelector("#errorMsgReg").innerHTML = errorMsg;
+              return false;
+            }
+            else {
+              form.push({
+                name: getElements[i].name,
+                value: getElements[i].value
+              });
+            }
+          }
         }
+      }
+      window.alert(form[1].value);
+      return true;
     }
-    }
-    var length = form.length; 
-     // for(var i = 0; i < length; i++) {
-
-      for(var i = 0; i < length; i++) {
-      // window.alert(form);
-      console.log(form[i].value);
-    }
-    }
+  }  
   </script>
-
 </dom-module>
