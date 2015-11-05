@@ -24,6 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding-left: 40px;
         font-size: 16px;
       }
+
       .sign {
         background: #c0c0c0;
         font-size: 18px;
@@ -134,7 +135,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding-left: 40px;
         font-size: 16px;
       }
-
       
       #submit {
         text-decoration: none;
@@ -153,6 +153,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         cursor: pointer;
         margin-top: 50px;
       }
+
       #submit:hover {
               animation: hover ease-in 0.1s;
               animation-fill-mode: forwards;
@@ -172,24 +173,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <!-- HTML -->
   <template>
     <body id="body" style="overflow:hidden;">
-
-<!-- LOGIN POTION STARTS HERE -->
       <div id="login">
         <!-- Popup Div Starts Here -->
         <div id="popupContact">
-          <!-- Contact Us Form -->
-         <!--  <form id="form_log" name="form" onsubmit="find_elements(this)"> -->
+          <!-- 'FORM' STARTS HERE -->
             <div id="form" name="form" >
               <iron-icon id="close" class="highlight-off" icon="highlight-off" onclick="div_hide()">></iron-icon>
               <h2 id="titlelog">{{signInHeader}}</h2>
               <h2 id="titlereg">{{regHeader}}</h2>
 
+              <!-- Items unique to Sign in -->
               <div id="sign_in">
                 <input class="input" id="email" name="email" placeholder="{{signInEmail}}" type="text">
                 <div class="content-wrapper" name="test"> <content name="TEST" select="#login"></content></div>
                 <input class="input" id="password" name="password" placeholder="{{signInPassword}}" type="password">
               </div>
 
+              <!-- Items unique to Register -->
               <div id="register">
                 <input class="input" id="username" name="email" placeholder="{{regEmail}}" type="text">
                 <input class="input" id="password" name="password" placeholder="Password" type="password">
@@ -296,7 +296,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       document.getElementById('login').style.display = "none";
       document.getElementById('switch_log').style.display = "none";
       document.getElementById('errorMsgSign').style.display = "none";
-      
     }
     function div_hide_reg() {
       document.getElementById('titlereg').style.display = "none";
@@ -304,7 +303,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       document.getElementById('login').style.display = "none";
       document.getElementById('switch_reg').style.display = "none";
       document.getElementById('errorMsgReg').style.display = "none";
-      
     }
     
     //Functions to switch between popups
@@ -318,10 +316,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     function find_elements() {
-      
-    
     var errorMsg = "";
-
     if(formId === 0) {
       var form = [];
       var getElements = document.getElementById("sign_in").children;
@@ -340,7 +335,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }
         }
       }
-      window.alert(form[1].name);
       return true;
     }
     else {
@@ -363,7 +357,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }
         }
       }
-      window.alert(form[1].value);
       return true;
     }
   }  
