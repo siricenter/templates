@@ -78,7 +78,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <iron-pages attr-for-selected="data-route" selected="{{route}}">
 
         <section data-route="home">
-          <team-member></team-member>
+
+          <team-member member-img="images/Headshot.jpg" seeTitle="doesItWork()"></team-member>
+        
           <hero-section sectionHeight="100" heroImg="http://lorempixel.com/600/600/people">
             <section class="marketingText">
               <h1>Features:</h1>
@@ -199,5 +201,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script src="scripts/app.js"></script>
   <!-- endbuild-->
 </body>
+<script type="text/javascript">
+  function doesItWork(){
+    window.alert("IT WORKS!!");
+  }
+</script>
+
 
 </html>
