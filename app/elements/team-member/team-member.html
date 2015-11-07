@@ -154,7 +154,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         
         <section id="info-content-box">
           <a href="">
-            <div on-tap="seeTitle" class="info-content hvr-fade">
+            <div on-tap="{{seeTitle}}" class="info-content hvr-fade">
               <h3 class="info title">Title</h3>
               <p class="info">{{title}}</p>
               <p class="info">______________________________________</p>
@@ -180,7 +180,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
           </a>
 
-          <a href="mailto:<span>{{email}}</span>">
+          <a href="mailto:{{email.value}}">
             <div  class="info-content hvr-fade">
               <h3 class="info title">Email</h3>          
               <p class="info">{{email}}</p>
@@ -230,21 +230,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: String,
           value: 'http://fillmurray.com/200/275',
           notify: true
-        }
+        },
+        seeTitle: {
+          type: Object,
+          notify: true,
+          value: function() {
+            alert('Clicking here will show you other employees with this title.');
+          },
+          
+          
+        }  
 
-      },
-       seeTitle: function() {
-        alert('Clicking here will show you other employees with this title.');
-      },
-      seeDepartment: function() {
-        alert('Clicking here will show you other employees in this department.')
-      },
-      phoneContact: function() {
-        alert('Clicking here will call this employee via soft phone, skype, facetime etc.')
-      },
-      emailContact: function() {
-        alert('Clicking here will open a new email to this employee.')
       }
+      //  seeTitle: function() {
+      //   alert('Clicking here will show you other employees with this title.');
+      // },
+      // seeDepartment: function() {
+      //   alert('Clicking here will show you other employees in this department.')
+      // },
+      // phoneContact: function() {
+      //   alert('Clicking here will call this employee via soft phone, skype, facetime etc.')
+      // },
+      // emailContact: function() {
+      //   alert('Clicking here will open a new email to this employee.')
+      // }
 
     });
 
