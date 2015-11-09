@@ -153,8 +153,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         
         
         <section id="info-content-box">
-          <a href="">
-            <div on-tap="{{seeTitle}}" class="info-content hvr-fade">
+          <!-- TODO:Make dynamic queries in future el -->
+          <a href="#">
+            <div id="title" class="info-content hvr-fade">
               <h3 class="info title">Title</h3>
               <p class="info">{{title}}</p>
               <p class="info">______________________________________</p>
@@ -162,8 +163,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
           </a>
 
-          <a href="">
-            <div on-tap="seeDepartment" class="info-content hvr-fade">
+          <a href="#">
+            <div on-special-tap="{{seeDepartment}}" class="info-content hvr-fade">
               <h3 class="info title">Department</h3>
               <p class="info">{{department}}</p>
               <p class="info">______________________________________</p>
@@ -171,7 +172,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
           </a>
           
-          <a href="">
+          <a href="#">
             <div on-tap="phoneContact" class="info-content hvr-fade">
               <h3 class="info title">Phone</h3>
               <p class="info">{{phone}}</p>
@@ -180,7 +181,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
           </a>
 
-          <a href="mailto:{{email.value}}">
+          <a href="{{mailTo}}">
             <div  class="info-content hvr-fade">
               <h3 class="info title">Email</h3>          
               <p class="info">{{email}}</p>
@@ -226,34 +227,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           value: 'Lee13011@byui.edu',
           notify: true
         },
+        mailTo:{
+          type: String,
+          value: '',
+          notify: true
+        },
         memberImg: {
           type: String,
           value: 'http://fillmurray.com/200/275',
           notify: true
-        },
-        seeTitle: {
-          type: Object,
-          notify: true,
-          value: function() {
-            alert('Clicking here will show you other employees with this title.');
-          },
-          
-          
-        }  
+        }
 
+      },
+
+      ready: function() {
+        this.mailTo = 'mailto:' + this.email
       }
-      //  seeTitle: function() {
-      //   alert('Clicking here will show you other employees with this title.');
-      // },
-      // seeDepartment: function() {
-      //   alert('Clicking here will show you other employees in this department.')
-      // },
-      // phoneContact: function() {
-      //   alert('Clicking here will call this employee via soft phone, skype, facetime etc.')
-      // },
-      // emailContact: function() {
-      //   alert('Clicking here will open a new email to this employee.')
-      // }
+
+    });
+
 
     });
 
