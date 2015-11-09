@@ -144,16 +144,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <section id="main-content">
       <paper-material id="main-paper">
           
-          <paper-material id="profile-paper-content" class="hvr-grow" elevation="0">
-            <iron-image id="memberImg" sizing="contain"  src="{{memberImg}}"></iron-image>
-
-            <!-- <img id="memberImg"  src="{{memberImg}}"> -->
+          <paper-material id="profile-paper-content"  elevation="0">
+            <iron-image id="memberImg" sizing="{{_imgSizing}}"  src="{{memberImg}}" position="center"></iron-image>
             <p id="name">{{name}}</p>
           </paper-material>
         
         
         <section id="info-content-box">
-          <!-- TODO:Make dynamic queries in future el -->
+          <!-- TODO:Make dynamic queries in future element functionality -->
           <a href="#">
             <div id="title" class="info-content hvr-fade">
               <h3 class="info title">Title</h3>
@@ -163,6 +161,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
           </a>
 
+          <!-- TODO:Make dynamic queries in future element functionality -->
           <a href="#">
             <div on-special-tap="{{seeDepartment}}" class="info-content hvr-fade">
               <h3 class="info title">Department</h3>
@@ -172,6 +171,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
           </a>
           
+          <!-- TODO:Make dynamic queries in future element functionality -->
           <a href="#">
             <div on-tap="phoneContact" class="info-content hvr-fade">
               <h3 class="info title">Phone</h3>
@@ -236,19 +236,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: String,
           value: 'http://fillmurray.com/200/275',
           notify: true
+        },
+        imgType: {
+          type: String,
+          value: 'square',
+          notify: true
+        },
+        _imgSizing: {
+          type: String,
+          value: 'contain',
+          notify: true
         }
 
       },
-
       ready: function() {
-        this.mailTo = 'mailto:' + this.email
+        this.mailTo = 'mailto:' + this.email;
+        
+        switch(this.imgType) {
+          case 'square':
+            this._imgSizing = 'contain';
+            break;
+          case 'round':
+            this._imgSizing = 'cover';
+            this.$.memberImg.style.borderRadius = '50%';
+            this.$.memberImg.style.height = '200px';
+            this.$.memberImg.style.width = '200px';
+            break;
+
+
+        }
       }
-
     });
-
-
-    });
-
   })();   
   </script>
 </dom-module>
