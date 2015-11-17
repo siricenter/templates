@@ -8,7 +8,9 @@
     "neon-elements": "PolymerElements/neon-elements#1.0.0",
     "page": "visionmedia/page.js#~1.6.3",
     "iron-image": "PolymerElements/iron-image#~1.0.2",
-    "polymer": "Polymer/polymer#^1.1.0"
+    "polymer": "Polymer/polymer#^1.1.0",
+    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#~1.1.0",
+    "firebase-element": "GoogleWebComponents/firebase-element#~1.0.8"
   },
   "devDependencies": {
     "web-component-tester": "*",

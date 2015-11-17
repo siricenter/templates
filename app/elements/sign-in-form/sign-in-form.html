@@ -199,7 +199,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
               <p id="errorMsgSign" class="errorMsg"></p>
               <p id="errorMsgReg" class="errorMsg"></p>
-              <button id="submit" onclick="return find_elements()">{{submitButton}}</button>
+              <button id="submit" onclick="find_elements()">{{submitButton}}</button>
               <p id="switch_log"><i>Don't have an account? <a href="javascript:switch_to_reg()">Register</a></i></p>
               <p id="switch_reg"><i>Already have an account? <a href="javascript:switch_to_login()">Sign in</a></i></p>
             <!-- Add Google, facebook, ect. later -->
@@ -325,7 +325,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           if (getElements[i].value === null || getElements[i].value === "") {
             errorMsg = getElements[i].placeholder + " has not been filled out.";
             document.querySelector("#errorMsgSign").innerHTML = errorMsg;
-            return false;
+            
           }
           else {
             form.push({
@@ -335,7 +335,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }
         }
       }
-      return true;
+      
     }
     else {
       var form = [];
@@ -346,7 +346,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             if (getElements[i].value === null || getElements[i].value === "") {
               errorMsg = getElements[i].placeholder + " has not been filled out.";
               document.querySelector("#errorMsgReg").innerHTML = errorMsg;
-              return false;
+              
             }
             else {
               form.push({
@@ -357,7 +357,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }
         }
       }
-      return true;
+      
     }
   }  
   </script>
