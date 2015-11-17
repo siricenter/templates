@@ -1,0 +1,198 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="tile-component">
+<template>
+  <style>
+  :host {
+    display: block;
+  }
+  #tile-content {
+    padding: 15px;
+  }
+  #imageLocation{
+    
+    flex:2;
+  }
+  #text{
+    text-align:left;
+    flex:1;
+  }
+  #container{
+    display:flex;
+  }
+  #toggleHide{
+    display:block;
+  }
+  #toggleParagraph{
+    display:none;
+  }
+  #toggleImage{
+    display:none;
+  }
+  h2{
+    margin-bottom:5px;
+  }
+}
+</style>
+<paper-material id="tile-content" elevation="{{cardElevation}}">
+<div id="container">
+  <div id="toggleHide">
+   <h2 >{{title}}</h2>
+  </div>
+  <div id="imageLocation">
+    <img src={{imgPath}} >    
+  </div>
+  <div id="text">
+    <div id="toggleParagraph">
+      <div id="title">
+        <h2 >{{title}}</h2>
+      </div>
+      <div id="toggleImage" >
+        <img src={{imgPath}} >
+      </div>
+    </div>
+    <p >em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mol</p>
+    </div>
+  </div>
+</paper-material>
+</template>
+<content>
+
+</content>
+<script>
+(function() {
+  'use strict';
+
+  Polymer({
+    is: 'tile-component',
+
+    properties: {
+      title: {
+        type: String,
+        value: '',
+        notify: true
+      },
+      cardElevation: {
+        type: String,
+        value: "1",
+        notify: true
+      },
+      imgPosition: {
+        type: String,
+        value: 'top',
+        notify: true
+      },
+      imgPath:{
+        type: String,
+        value: 'http://lorempixel.com/350/350/city',
+        notify: true
+      }
+    },
+
+      // ready:{
+      //   function:hideImage(){
+      //     images = getElementByTags('img');
+      //     for(img in images){
+      //       if(src=""){
+      //         img.style.display = hide;
+      //       }
+      //     }
+      //   }
+
+      // }
+      ready:function(){
+        console.log(this.imgPosition);
+        switch(this.imgPosition){
+          case 'top':
+                  this.$.container.style['flex-direction'] = 'column'
+                  this.$.container.style['align-items'] = 'center'
+                  this.$.toggleHide.style['order'] = 2;
+                  this.$.text.style['order'] = 3;
+                  break;
+           case 'middle':
+                  this.$.container.style['flex-direction'] = 'column'
+                  this.$.container.style['align-items'] = 'center'
+                  break;
+          case 'bottom':
+                  this.$.container.style['flex-direction'] = 'column-reverse';
+                  this.$.container.style['align-items'] = 'center'
+                  this.$.toggleHide.style['order'] = 3;
+                  this.$.text.style['order'] = 2;
+                  break;
+           case 'topLeft':
+                  this.$.toggleImage.style['order'] = 1;
+                  this.$.title.style['order'] = 2;
+                  this.$.title.style['padding-left'] = '10%';
+                  this.$.container.style['flex-direction'] = 'row';
+                  this.$.toggleHide.style['display'] = 'none'; //maybe do a height 0; set overflow to none
+                  this.$.toggleParagraph.style['display'] = 'flex';
+                   this.$.text.style['flex-basis'] = 'auto';
+                  this.$.imageLocation.style['display'] = 'none';
+                   this.$.toggleImage.style['display'] = 'flex';
+                   this.$.title.style['display'] = 'flex';
+                   this.$.title.style['flex-grow'] = '5';
+                   this.$.title.style['align-self'] = 'flex-end';
+                   this.$.title.style['margin'] = '0px';
+                  break;
+          case 'topRight':
+                  this.$.container.style['flex-direction'] = 'row';
+                  this.$.toggleHide.style['display'] = 'none'; //maybe do a height 0; set overflow to none
+                  this.$.toggleParagraph.style['display'] = 'flex';
+                   this.$.text.style['flex-basis'] = 'auto';
+                  this.$.imageLocation.style['display'] = 'none';
+                   this.$.toggleImage.style['display'] = 'flex';
+                   this.$.title.style['display'] = 'flex';
+                   this.$.title.style['flex-grow'] = '5';
+                   this.$.title.style['align-self'] = 'flex-end';
+                   this.$.title.style['margin'] = '0px';
+                  break;
+          case 'left':
+                  this.$.container.style['flex-direction'] = 'row';
+                  this.$.imageLocation.style['order'] = 1;
+                  this.$.toggleHide.style['order'] = 2;
+                  this.$.text.style['order'] = 3;
+                  this.$.toggleHide.style['display'] = 'none'; //maybe do a height 0; set overflow to none
+                  this.$.toggleParagraph.style['display'] = 'block';
+                  this.$.text.style['flex-grow'] = 3;
+                  break;
+         case 'right':
+                  this.$.container.style['flex-direction'] = 'row-reverse'
+                  this.$.imageLocation.style['order'] = 1;
+                  this.$.toggleHide.style['order'] = 2;
+                  this.$.text.style['order'] = 3;
+                  this.$.toggleHide.style['display'] = 'none'; //maybe do a height 0; set overflow to none
+                  this.$.toggleParagraph.style['display'] = 'block';
+                  this.$.text.style['flex-grow'] = 3;
+                  break;
+          default:
+                  this.$.imageLocation.style.textAlign = '';
+                }
+              }
+
+
+      /*
+        custome css --google it
+        */
+
+      });
+})();
+</script>
+</dom-module>
+
+<!-- no image, middle, bottom, top, topL, topR, L, R, for the image part   -->
+

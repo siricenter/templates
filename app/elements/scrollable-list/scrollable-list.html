@@ -1,0 +1,151 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="scrollable-list">
+    <style>
+
+#wrapper {
+  overflow: scroll;
+  height: 400px;
+  width: auto;
+  min-width: 200px;
+  padding: 0;
+}
+
+ul {
+  padding: 0;
+}
+
+#box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.check {
+  padding: 0;
+}
+
+.selectionOff {
+  background: var(--primary-background-color);
+  cursor: pointer;  
+}
+
+.selectionOn {
+  background: #85d3ee;
+  cursor: pointer;  
+}
+
+    </style>
+	<template>
+
+<div id="box">
+
+  <div class="test"> <h1>{{title}}</h1>
+    <div id="wrapper">
+        <ul>
+          <template is= "dom-repeat" items= "{{datas}}">
+              <div class="selectionOff" onclick="updateForm(this)">{{item.data}}<div>
+          </template>
+        </ul>
+    </div>
+  </div>
+
+</div>
+
+	</template>
+  <script>
+
+    (function() {
+      	Polymer({
+        	is: 'scrollable-list',
+
+        	properties: {
+      			data: {
+            		type: Array,
+            		value: '',
+            		notify: true
+      			},
+            title: {
+              type: String,
+              value: "Please select the following",
+              notify: true
+            },
+        	},
+          ready: function() { // Not real data, delete after real data is implemented
+            this.datas = [
+                {
+                  data: 'dataPoint1'
+                }, {
+                  data: 'dataPoint2'
+                }, {
+                  data: 'dataPoint3'
+                }, {
+                  data: 'dataPoint4'
+                }, {
+                  data: 'dataPoint5'
+                }, {
+                  data: 'dataPoint6'
+                }, {
+                  data: 'dataPoint7'
+                }, {
+                  data: 'dataPoint8'
+                }, {
+                  data: 'dataPoint9'
+                }, {
+                  data: 'dataPoint10'
+                }, {
+                  data: 'dataPoint11sasdasdasdasdasd'
+                }, {
+                  data: 'dataPoint1'
+                }, {
+                  data: 'dataPoint2'
+                }, {
+                  data: 'dataPoint3'
+                }, {
+                  data: 'dataPoint4'
+                }, {
+                  data: 'dataPoint5'
+                }, {
+                  data: 'dataPoint6'
+                }, {
+                  data: 'dataPoint7'
+                }, {
+                  data: 'dataPoint8'
+                }, {
+                  data: 'dataPoint9'
+                }, {
+                  data: 'dataPoint10'
+                }, {
+                  data: 'dataPoint11sasdasdasdasdasd'
+                }
+            ]
+          }
+        	
+      	});
+    })();
+
+    function updateForm(divObj) {
+
+      if (divObj.classList.contains("selectionOff")) {
+        divObj.classList.remove('selectionOff');
+        divObj.classList.add('selectionOn');
+      }
+      else {
+        divObj.classList.remove('selectionOn');
+        divObj.classList.add('selectionOff');
+      }
+
+    //Update information so the preview can be updated dynamically
+    }
+
+  </script>
+
+</dom-module>

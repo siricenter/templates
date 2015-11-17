@@ -1,0 +1,113 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="custom-dropdown">
+    <style>
+
+:host {
+            --paper-dropdown-menu-ripple: {
+             	top: 28px;
+            }
+
+			--paper-dropdown-menu-input:{
+				font-size: 30px;
+			}
+
+            --paper-dropdown-menu-icon: {
+             	background-color: var(--default-tertiary-color);
+             	color: rgba(0,0,0,0.4);
+             	height: 35px;
+             	width: 40px;
+             	border-bottom: 5px solid rgba(0,0,0,.3);
+            }
+
+            --paper-item: {
+             	font-size: 16px;
+            }
+        }
+
+		paper-dropdown-menu {
+			z-index: 1;
+		    border-radius: 0px;
+		  	margin: 0;
+		  	width: 300px;
+		  	text-indent: 10px;
+		  	text-overflow: '';
+		}
+		paper-dropdown-menu:hover {
+			animation: hover ease-in 0.1s;
+        	animation-fill-mode: forwards;
+		}
+
+		@keyframes hover {
+        from  {opacity: 1; }
+        to    {opacity: 0.8; }
+      }
+
+    </style>
+	<template>
+
+		<firebase-collection
+			location="{{firebaseRef}}"
+			data="{{firebaseData}}"> </firebase-collection>
+
+		<div class="custom dropdown" elevation="2">
+		<paper-dropdown-menu label="{{label}}" id="chartSelection" on-iron-select="findSelectedItem">
+		  <paper-menu class="dropdown-content">
+		  	<template is= "dom-repeat" items= "{{firebaseData}}">
+		    	<paper-item id="{{item.value}}">{{item.value}}</paper-item>
+			</template>
+		  </paper-menu>
+		</paper-dropdown-menu>
+		</div>
+
+	</template>
+  <script>
+    (function() {
+      	Polymer({
+        	is: 'custom-dropdown',
+
+        	properties: {
+      			firebaseRef: {
+            		type: String,
+            		value: '',
+            		notify: true
+      			},
+
+      			firebaseData: {
+            		type: Array,
+            		notify: true
+      			},
+
+      			selection: {
+      				type: String,
+      				value: '',
+      				notify: true
+      			},
+
+      			label: {
+      				type: String,
+      				value: 'Select one of the following',
+      				notify: true
+      			}
+      			
+        	},
+        	findSelectedItem: function() {
+        		var si = this.$.chartSelection.selectedItem.id;
+        		console.log(si);
+        		this.selection = si;
+        	}
+      	});
+    })();
+
+  </script>
+
+</dom-module>
