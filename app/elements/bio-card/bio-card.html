@@ -8,7 +8,7 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <dom-module id="bio-card">
   <template>
@@ -23,6 +23,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       #card-container {
         display: -webkit-flex;
         display: flex;
+
         -webkit-flex-direction: row;
         flex-direction: row;
         width: 100%;
@@ -35,12 +36,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       #contact-text {
       }
       #person-info-container {
+        display: -webkit-flex;
         display: flex;
+
+        -webkit-flex-direction: row;
         flex-direction: row;
       }
       #text-content-wrapper {
+        display: -webkit-flex;
         display: flex;
+
+        -webkit-flex-direction: column;
         flex-direction: column;
+        width: 100%;
       }
       iron-image {
         width: 100%;
@@ -77,18 +85,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         height: 40px;
         padding: 10px 40px 10px 40px;
       }
-      .experience-wrapper {
+      #experience-wrapper {
+        display: none;
       }
     </style>
     <section id="content">
       <paper-material elevation="{{cardElevation}}">
         <div id="card-container">
-          <iron-image id="main-image" class="" sizing="cover" preload fade src="{{image_source}}"></iron-image>
+          <iron-image id="main-image" class="" sizing="cover" preload fade src="{{imageSource}}"></iron-image>
           <div id="text-content-wrapper">
             <div id="person-info-container">
               <div id="job-text" class="text-border">
                 <h2 class="heading2">{{name}}</h2>
-                <h3>{{job_title}}</h3>
+                <h3>{{jobTitle}}</h3>
               </div>
               <div id="contact-text" class="text-border">
                 <p class="card-border">Websites: <span>{{websites}}</span></p>
@@ -132,25 +141,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           value: 'bio-card',
           notify: true
         },
-        card_elevation: {
+        cardElevation: {
           type: Number,
           value: 1,
           notify: true
         },
-        image_source: {
+        imageSource: {
           type: String,
           value: "http://lorempixel.com/400/400/cats",
           notify: true
         },
-        job_title: {
+        jobTitle: {
           type: String,
           value: 'Web Designer',
           notify: true
         },
-        image_position: {
+        imagePosition: {
           type: String,
           value: 'Left',
           notify: true
+        },
+        experience: {
+          type: Boolean,
+          value: false
         },
         address: {
           type: String,
@@ -175,17 +188,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       ready: function () {
-        if(this.image_position == "Right" || this.image_position == "right") {
+        if(this.imagePosition == "Right" || this.imagePosition == "right") {
           this.$['card-container'].style['flex-direction'] = 'row-reverse';
           this.$['card-container'].style['-webkit-flex-direction'] = 'row-reverse';
         }
-        else if(this.image_position == "Left" || this.image_position == "left") {
+        else if(this.imagePosition == "Left" || this.imagePosition == "left") {
           this.$['card-container'].style['flex-direction'] = 'row';
           this.$['card-container'].style['-webkit-flex-direction'] = 'row';
         }
-        else if(this.image_position == "Top" || this.image_position == "top") {
+        else if(this.imagePosition == "Top" || this.imagePosition == "top") {
           this.$['card-container'].style['flex-direction'] = 'column';
           this.$['card-container'].style['-webkit-flex-direction'] = 'column';
+        }
+        if(this.experience == true) {
+          this.$['experience-wrapper'].style.display = 'block';
         }
       }
     });
