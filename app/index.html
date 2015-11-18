@@ -25,6 +25,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- Web Application Manifest -->
   <link rel="manifest" href="manifest.json">
 
+  <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
+
   <!-- Tile color for Win8 -->
   <meta name="msapplication-TileColor" content="#3372DF">
 
@@ -53,39 +55,70 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- will be replaced with elements/elements.vulcanized.html -->
   <link rel="import" href="elements/elements.html">
   <!-- endreplace-->
+
+
 </head>
 
 <body unresolved class="fullbleed layout vertical">
   <span id="browser-sync-binding"></span>
   <template is="dom-bind" id="app">
 
+
+
   <!-- Main Area -->
   <paper-scroll-header-panel condenses keep-condensed-header>
 
     <bar-header name="RBDC Template" logo="http://lorempixel.com/150/150/abstract">
+
       <div class="social-menu-items">
         <a href=""><iron-icon icon="social:share"></iron-icon></a>
       </div>
+
       <div class="site-menu-items">
         <a data-route="home" href="/"><iron-icon class="icon-menu" icon="home"></iron-icon>Home</a>
         <a data-route="users" href="/users"><iron-icon class="icon-menu" icon="info"></iron-icon>About</a>
         <a data-route="contact" href="/contact"><iron-icon class="icon-menu" icon="mail"></iron-icon>Contact</a>
+
       </div>
     </bar-header>
 
+    
+
     <!-- Main Content -->
     <div class="content">
+
+
+
       <iron-pages attr-for-selected="data-route" selected="{{route}}">
+
+
 
         <section data-route="home">
 
           <team-member img-type="round"></team-member>
         
+    <chart-specs>
+        
+        
+
+    </chart-specs>
+
+
+        <sign-in-form>
+          
+        </sign-in-form>
+
+          <!-- Call to Action -->
+          <call-to-action main="A call to action." button="Click here for awesomesauce">
+            <p id="subtitle"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>  
+          </call-to-action>
+
+
           <hero-section sectionHeight="100" heroImg="http://lorempixel.com/600/600/people">
             <section class="marketingText">
               <h1>Features:</h1>
               <ul>
-                <li>Aweseome stuff</li>
+                <li>Awesome stuff</li>
                 <li>Great item</li>
                 <li>Sweet person</li>
                 <li>Rockin' feature</li>
@@ -118,6 +151,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </block-row>
 
           <testimonial-section foo="bar"></testimonial-section>
+
 
           <paper-material elevation="1">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

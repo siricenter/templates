@@ -1,0 +1,364 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="sign-in-form">
+
+<!-- CSS -->
+    <style>
+      :host{  
+      }
+
+      .content-wrapper > ::content .input {
+        width: 82%;
+        padding: 10px;
+        margin-top: 30px;
+        border: var(--drawer-border-color);
+        padding-left: 40px;
+        font-size: 16px;
+      }
+
+      .sign {
+        background: #c0c0c0;
+        font-size: 18px;
+        border: 0;
+        width: 100px;
+        height: 45px;
+        color: var(--text-primary-color);
+        text-shadow: var(--text-shadow);
+        border: 0;
+        border-bottom: 5px solid #959595;
+        cursor: pointer;
+      }
+
+      .register {
+        background: var(--button-color-primary);
+        font-size: 18px;
+        border: 0;
+        width: 100px;
+        height: 45px;
+        color: var(--text-primary-color);
+        text-shadow: var(--text-shadow);
+        border: 0;
+        border-bottom: 5px solid var(--button-color-secondary);
+        cursor: pointer;
+      }
+
+      .sign:hover {
+        animation: hover ease-in 0.1s;
+        animation-fill-mode: forwards;
+      } 
+      .register:hover {
+        animation: hover ease-in 0.1s;
+        animation-fill-mode: forwards;
+      } 
+      @keyframes hover {
+        from  {opacity: 1; }
+        to    {opacity: 0.8; }
+      }
+
+      #login {
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: none;
+        position: fixed;
+        background: rgba(51, 51, 51, 0.6);
+        overflow: auto
+      }
+
+      #close {
+        position: absolute;
+        right: -14px;
+        top: -14px;
+        cursor: pointer
+      }
+
+      #close:click {
+        animation: fade-out 0.3s;
+      }
+
+      #popupContact {
+        position: absolute;
+        opacity: 1;
+        left: 50%;
+        top: 17%;
+        margin-left: -202px;
+        animation: fade-in 0.5s;
+      }
+
+      iron-icon{
+        color:white;
+      }
+
+      #form {
+        width: 300px;
+        padding: 10px 50px;
+        padding-bottom: 30px;
+        border-radius: 0px;
+        background-color: var(--primary-background-color);
+      }
+
+      #titlelog, #titlereg {
+        background-color: var(--default-tertiary-color);
+        color: var(--text-primary-color);
+        text-shadow: var(--text-shadow);
+        padding: 20px 35px;
+        margin: -10px -50px;
+        text-align: center;
+      }
+
+      @keyframes fade-in {
+        from  {opacity: 0; }
+        to    {opacity: 1; }
+      }
+
+      @keyframes fade-out {
+        from  {opacity: 1; }
+        to    {opacity: 0; }
+      }
+
+      .input {
+        width: 82%;
+        padding: 10px;
+        margin-top: 30px;
+        border: var(--drawer-border-color);
+        padding-left: 40px;
+        font-size: 16px;
+      }
+      
+      #submit {
+        text-decoration: none;
+        width: 100%;
+        text-align: center;
+        display: block;
+        background-color: var(--button-color-primary);
+        color: var(--text-primary-color);
+        border: 0px;
+        padding: 10px 0;
+        font-size: 20px;
+        cursor: pointer;
+        border-radius: 0px;
+        text-shadow: var(--text-shadow);
+        border-bottom: 5px solid var(--button-color-secondary);
+        cursor: pointer;
+        margin-top: 50px;
+      }
+
+      #submit:hover {
+              animation: hover ease-in 0.1s;
+              animation-fill-mode: forwards;
+            } 
+
+      .right {
+        text-align: right;
+      }
+
+      .errorMsg {
+        color: red;
+        font-style: italic;
+      }
+
+    </style>
+
+<!-- HTML -->
+  <template>
+    <body id="body" style="overflow:hidden;">
+      <div id="login">
+        <!-- Popup Div Starts Here -->
+        <div id="popupContact">
+          <!-- 'FORM' STARTS HERE -->
+            <div id="form" name="form" >
+              <iron-icon id="close" class="highlight-off" icon="highlight-off" onclick="div_hide()">></iron-icon>
+              <h2 id="titlelog">{{signInHeader}}</h2>
+              <h2 id="titlereg">{{regHeader}}</h2>
+
+              <!-- Items unique to Sign in -->
+              <div id="sign_in">
+                <input class="input" id="email" name="email" placeholder="{{signInEmail}}" type="text">
+                <div class="content-wrapper" name="test"> <content name="TEST" select="#login"></content></div>
+                <input class="input" id="password" name="password" placeholder="{{signInPassword}}" type="password">
+              </div>
+
+              <!-- Items unique to Register -->
+              <div id="register">
+                <input class="input" id="username" name="email" placeholder="{{regEmail}}" type="text">
+                <input class="input" id="password" name="password" placeholder="Password" type="password">
+                <input class="input" id="confirm_password" name="confirm_password" placeholder="Confirm Password" type="password">
+                <div class="content-wrapper"> <content select="#register"></content></div>
+              </div>
+
+              <p id="errorMsgSign" class="errorMsg"></p>
+              <p id="errorMsgReg" class="errorMsg"></p>
+              <button id="submit" onclick="find_elements()">{{submitButton}}</button>
+              <p id="switch_log"><i>Don't have an account? <a href="javascript:switch_to_reg()">Register</a></i></p>
+              <p id="switch_reg"><i>Already have an account? <a href="javascript:switch_to_login()">Sign in</a></i></p>
+            <!-- Add Google, facebook, ect. later -->
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <button id="popup" class="sign" onclick="div_show()">{{signInButton}}</button>
+        <button id="popup" class="register" onclick="div_show_reg()">{{regButton}}</button>
+      </div>
+    </body>  
+  </template>
+<!-- END LOGIN -->
+
+<!-- JAVASCRIPT -->
+  <script>
+    (function() {
+      Polymer({
+        is: 'sign-in-form',
+
+        properties: {
+          signInButton: {
+            type: String,
+            value: 'Sign in',
+            notify: true
+          },
+          regButton: {
+            type: String,
+            value: 'Register',
+            notify: true
+          },
+          signInHeader: {
+            type: String,
+            value: 'Sign in',
+            notify: true
+          },
+          regHeader: {
+            type: String,
+            value: 'Register',
+            notify: true
+          },
+          signInEmail: {
+            type: String,
+            value: 'Email/Username',
+            notify: true
+          },
+          regEmail: {
+            type: String,
+            value: 'Email/Username',
+            notify: true
+          },
+          signInPassword: {
+            type: String,
+            value: 'Password',
+            notify: true
+          },
+          submitButton: {
+            type: String,
+            value: 'Send',
+            notify: true
+          }
+        }
+      });
+    })();
+
+    //Functions To Display Popup
+    var formId = 0;
+    function div_show() {
+      formId = 0;
+      div_hide_reg();
+      document.getElementById('login').style.display = "block";
+      document.getElementById('sign_in').style.display = "block";
+      document.getElementById('switch_log').style.display = "block";
+      document.getElementById("email").focus();
+      document.getElementById('titlelog').style.display = "block";
+      document.getElementById('errorMsgSign').style.display = "block";
+    }
+    function div_show_reg() {
+      formId = 1;
+      div_hide();
+      document.getElementById('login').style.display = "block";
+      document.getElementById('register').style.display = "block";
+      document.getElementById('switch_reg').style.display = "block";
+      document.getElementById("username").focus();
+      document.getElementById('titlereg').style.display = "block";
+      document.getElementById('errorMsgReg').style.display = "block";
+    }
+
+    //Functions to Hide Popup
+    function div_hide() {
+      document.getElementById('titlelog').style.display = "none";
+      document.getElementById('sign_in').style.display = "none";
+      document.getElementById('login').style.display = "none";
+      document.getElementById('switch_log').style.display = "none";
+      document.getElementById('errorMsgSign').style.display = "none";
+    }
+    function div_hide_reg() {
+      document.getElementById('titlereg').style.display = "none";
+      document.getElementById('register').style.display = "none";
+      document.getElementById('login').style.display = "none";
+      document.getElementById('switch_reg').style.display = "none";
+      document.getElementById('errorMsgReg').style.display = "none";
+    }
+    
+    //Functions to switch between popups
+    function switch_to_login() {
+      div_hide_reg();
+      div_show();
+    }
+    function switch_to_reg() {
+      div_hide();
+      div_show_reg();
+    }
+
+    function find_elements() {
+    var errorMsg = "";
+    if(formId === 0) {
+      var form = [];
+      var getElements = document.getElementById("sign_in").children;
+      for(var i = 0; i < getElements.length; i++) {
+        if(getElements[i].tagName != 'DIV') {
+          if (getElements[i].value === null || getElements[i].value === "") {
+            errorMsg = getElements[i].placeholder + " has not been filled out.";
+            document.querySelector("#errorMsgSign").innerHTML = errorMsg;
+            
+          }
+          else {
+            form.push({
+              name: getElements[i].name,
+              value: getElements[i].value
+            });
+          }
+        }
+      }
+      
+    }
+    else {
+      var form = [];
+      var getElements = document.getElementById("register").children; 
+      for(var i = 0; i < getElements.length; i++) {
+        if(getElements[i].tagName != 'DIV') {
+          if(getElements[i].tagName != 'DIV') {
+            if (getElements[i].value === null || getElements[i].value === "") {
+              errorMsg = getElements[i].placeholder + " has not been filled out.";
+              document.querySelector("#errorMsgReg").innerHTML = errorMsg;
+              
+            }
+            else {
+              form.push({
+                name: getElements[i].name,
+                value: getElements[i].value
+              });
+            }
+          }
+        }
+      }
+      
+    }
+  }  
+  </script>
+</dom-module>
