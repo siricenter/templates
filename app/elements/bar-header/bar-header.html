@@ -11,47 +11,49 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <dom-module id="bar-header">
-  <style is="custom-style">
+    <style is="custom-style">
 
-    :host {
-      display: block;
-    }
+      :host {
+        display: block;
+      }
 
-    #menu-brand {
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-    iron-image {
-      background-color: skyblue;
-      height: 128px;
-      width: 128px;
-    }
+      #menu-brand {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: -4px;
+      }
+      iron-image {
+        background-color: skyblue;
+        height: 128px;
+        width: 128px;
+      }
 
-    .horizontal-site-menu > ::content a{
-      color: var(--text-primary-color);
-      text-decoration: none;
-      margin-left: 5px;
-      margin-right: 5px;
-    }
-    .horizontal-site-menu > ::content a:hover {
-      color: var(--accent-color);
-    }
-    .horizontal-site-menu ::content iron-icon {
-      height: 17px;
-      width: 17px;
-      padding-right: 3px;
-    }
+      .horizontal-site-menu > ::content a{
+        color: var(--text-primary-color);
+        text-decoration: none;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+      .horizontal-site-menu > ::content a:hover {
+        color: var(--accent-color);
+      }
+      .horizontal-site-menu ::content iron-icon {
+        height: 17px;
+        width: 17px;
+        padding-right: 3px;
+      }
 
-    .social-menu ::content * {
-      color: var(--text-primary-color);
-    }
+      .social-menu ::content * {
+        color: var(--text-primary-color);
+      }
 
-    .search-icon {
-      margin-left: 10px;
-    }
+      .search-icon {
+        margin-left: 10px;
+      }
 
-  </style>
+    </style>
   <template>
+
     <!-- Main Toolbar -->
     <paper-toolbar id="mainToolbar" class="medium-tall">
 
