@@ -1,0 +1,173 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="pie-form">
+    <style>
+
+:host {
+             
+        }
+
+
+      #pieForm, #barForm, 
+		#graphForm, #bubbleForm {
+			display: none;
+		}
+		#formWrapper {
+        padding: 15px;
+      }
+
+      .slice {
+
+      color: red;
+
+      }
+
+    </style>
+	<template>
+		
+		
+
+<div id="formWrapper">
+	<div id="pieForm">
+		<paper-material elevation="1" id="piePaper">
+		<p>How many slices?</p>
+		<div id="sliceSec">
+			<input type="text" onclick="populateSlices" id="slices" onchange="populateSlices()"></input>
+			<p>please enter values below: </p>
+		</div>
+		<!--create a javascript function to determine how many 'slices' will be needed-->
+		<!-- then ask for percentage and name -->
+		</paper-material>
+	</div>
+
+	<div id="barForm">
+		<paper-material elevation="1">
+		<!-- Title -->
+		<!-- Horizontal axis -->
+		<!-- Vertical axis -->
+		<!-- data labels? -->
+		<!-- number of bars -->
+		<!-- data values -->
+		</paper-material>
+	</div>
+
+	<div id="graphForm">
+		<paper-material elevation="1">
+		<!-- Title -->
+		<!-- Horizontal axis -->
+		<!-- Vertical axis -->
+		<!-- data labels? -->
+		<!-- number of lines -->
+		<!-- data values -->
+		</paper-material>
+	</div>
+
+	<div id="bubbleForm">
+		<paper-material elevation="1">
+		<!-- Title -->
+		<!-- Horizontal axis -->
+		<!-- Vertical axis -->
+		<!-- all sorts of other stuff that I have no idea about. I need to read up on bubble charts :/ -->
+		</paper-material>
+	</div>
+</div>
+
+
+
+	</template>
+  <script>
+    (function() {
+      	Polymer({
+        	is: 'pie-form',
+
+        	properties: {
+        		signInButton: {
+            		type: String,
+            		value: 'Sign in',
+            		notify: true
+      			}
+        	},
+
+        	populateForm: function() {
+        		var si = this.$.chartSelection.selectedItem
+        		if (si) {
+        			switch(si.id) {
+					    case "pie":
+					    	console.log("Pie");
+					    	document.getElementById('pieForm').style.display = "block";
+					    	document.getElementById('barForm').style.display = "none";
+					    	document.getElementById('graphForm').style.display = "none";
+					    	document.getElementById('bubbleForm').style.display = "none";
+					        break;
+					    case "bar":
+					        console.log("Bar");
+					        document.getElementById('pieForm').style.display = "none";
+					    	document.getElementById('barForm').style.display = "block";
+					    	document.getElementById('graphForm').style.display = "none";
+					    	document.getElementById('bubbleForm').style.display = "none";
+					        break;
+					    case "graph":
+					        console.log("Graph");
+					        document.getElementById('pieForm').style.display = "none";
+					    	document.getElementById('barForm').style.display = "none";
+					    	document.getElementById('graphForm').style.display = "block";
+					    	document.getElementById('bubbleForm').style.display = "none";
+					        break;
+					    case "bubble":
+					        console.log("Bubble");
+					        document.getElementById('pieForm').style.display = "none";
+					    	document.getElementById('barForm').style.display = "none";
+					    	document.getElementById('graphForm').style.display = "none";
+					    	document.getElementById('bubbleForm').style.display = "block";
+					        break;
+					    default:
+					}
+        		}
+        	}
+
+        	
+      	});
+    })();
+
+
+     
+
+
+// function populateForm() {
+// 	if (document.querySelector('#chartSelection').selectedItem != null) {
+// var selected_item = document.querySelector('#chartSelection').selectedItem;
+// if (selected_item.id === "pie") {
+//   alert("Selected item is " + selected_item.textContent);
+// } else {
+//   alert("Item is not selected yet");
+// }
+
+// }
+// }
+    
+//     function populateForm() {
+
+//     	window.alert("Inside populateForm function.");
+//     	console.log("Inside populateForm function.");
+
+//     	var hiddenDiv = document.getElementById("showMe");
+
+    	
+       
+// // } 
+
+//     }
+
+
+  </script>
+
+</dom-module>

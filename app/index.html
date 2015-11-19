@@ -25,7 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- Web Application Manifest -->
   <link rel="manifest" href="manifest.json">
 
-  <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
+
 
   <!-- Tile color for Win8 -->
   <meta name="msapplication-TileColor" content="#3372DF">
@@ -93,14 +93,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
         <section data-route="home">
+          <firebase-data-importer base-ref="https://rbdcdataviz.firebaseio.com/ipedsData/"></firebase-data-importer>
+    <chart-specs chart-selection="{{chart-selection}}"></chart-specs>
+    <h1>{{chart-selection}}</h1>
 
-          <team-member img-type="round"></team-member>
-
-    <chart-specs>
-
-
-
-    </chart-specs>
+    <team-member img-type="round"></team-member>
 
 
         <sign-in-form>
@@ -149,6 +146,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </content-block>
           </block-row>
 
+<<<<<<< HEAD
           <testimonial-section  layout="">
             <div id="testimonial-wrapper">
               <testimonial-item author="Evan Caldwell">
@@ -166,6 +164,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
           </testimonial-section>
 
+=======
+          <testimonial-section ></testimonial-section>
+
+<tile-component  title="Bar" card-elevation="3" img-position="left" img-path="http://lorempixel.com/300/300/city">
+          </tile-component>
+>>>>>>> 32f07dc0fc72ccb7bb322aebf0d9e64a18f70087
 
           <paper-material elevation="1">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
