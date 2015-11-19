@@ -24,11 +24,6 @@ ul {
   padding: 0;
 }
 
-#box {
-  display: flex;
-  justify-content: space-between;
-}
-
 .check {
   padding: 0;
 }
@@ -46,9 +41,9 @@ ul {
     </style>
 	<template>
 
-<div id="box">
 
-  <div class="test"> <h1>{{title}}</h1>
+<paper-material elevation="1">
+  <div class="test"> <h1>{{header}}</h1>
     <div id="wrapper">
         <ul>
           <template is= "dom-repeat" items= "{{datas}}">
@@ -57,8 +52,7 @@ ul {
         </ul>
     </div>
   </div>
-
-</div>
+</paper-material>
 
 	</template>
   <script>
@@ -73,7 +67,7 @@ ul {
             		value: '',
             		notify: true
       			},
-            title: {
+            header: {
               type: String,
               value: "Please select the following",
               notify: true
