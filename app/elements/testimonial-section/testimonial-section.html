@@ -19,9 +19,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       #testimonialContent {
         padding: 15px;
       }
+      #testimonial-wrapper {
+        display: flex;
+        flex-direction: column;
+      }
     </style>
     <paper-material id="testimonialContent" elevation="{{cardElevation}}">
       <h2>{{title}}</h2>
+      <content select="#testimonial-wrapper"></content>
     </paper-material>
     
   </template>
@@ -43,9 +48,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           value: "1",
           notify: true
         },
-        style: {
+        layout: {
           type: String,
-          value: "grid", // list, carousel, tiles, animated texting, ??
+          value: "list", // list, grid, carousel, tiles, animated texting, ??
           notify: true
         }
       }
