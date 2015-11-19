@@ -94,15 +94,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
         <section data-route="home">
-          
 
-    <chart-specs chart-selection="{{chart-selection}}">
-        
-        <!-- sql to jason
-        csv to json -->
 
-    </chart-specs>
+    <chart-specs chart-selection="{{chart-selection}}"> </chart-specs>
     <h1>{{chart-selection}}</h1>
+    
+    <team-member img-type="round"></team-member>
 
 
         <sign-in-form>
@@ -113,7 +110,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <call-to-action main="A call to action." button="Click here for awesomesauce">
             <p id="subtitle"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>  
           </call-to-action>
-
 
 
           <hero-section sectionHeight="100" heroImg="http://lorempixel.com/600/600/people">
@@ -136,6 +132,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </ul>
             </section>
           </hero-section>
+          <br>
+
+          
 
           <block-row cardElevation="3">
             <content-block id="block_1" mainImg="http://lorempixel.com/600/600/abstract">
@@ -236,5 +235,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script src="scripts/app.js"></script>
   <!-- endbuild-->
 </body>
+<script type="text/javascript">
+  function doesItWork(){
+    window.alert("IT WORKS!!");
+  }
+</script>
+
 
 </html>

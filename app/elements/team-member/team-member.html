@@ -1,0 +1,272 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="team-member">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      a:link {
+        color:var(--primary-text-color);
+        text-decoration: none;
+      }
+      a:visited {
+        color:var(--primary-text-color);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: none;
+      }
+      a:active {
+        text-decoration: none;
+      }
+      iron-image {
+        width: 100%;
+        height:250px;
+      }
+      #main-paper {
+        /*background-color: pink;*/
+        width: 600px;
+        height: 400px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction:row;
+        align-items:center;
+        justify-content: space-around;
+        margin:0px;
+      }
+      #profile-paper-content {
+        /*background-color: pink;*/
+        width: 200px;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        justify-content:space-around;
+        /*margin:25px;*/
+      }
+      #name {
+        /*background-color: pink;*/
+        font-family: Papyrus, fantasy;
+        font-size: 25px;
+        text-align: center;
+        margin: 0;
+      }
+      #info-content-box {
+        /*background-color: pink;*/
+        display: flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        margin:1px;
+      }
+      .info-content{
+        display: flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        margin:1px;
+      }
+      .title {
+        font-family: Copperplate;
+        margin: 0;
+      }
+      .info {
+        font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+        margin: 0;
+      }
+      #profile-content {
+        background-color: red;
+        height: 400px;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+      }
+
+      /*Hover stuff*/
+
+      /*Hover Grow*/
+      .hvr-grow {
+        /*display: inline-block;*/
+        vertical-align: middle;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-property: transform;
+        transition-property: transform;
+      }
+      .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+      }
+
+      /*Hover Fade*/
+      .hvr-fade {
+        /*display: inline-block;*/
+        vertical-align: middle;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -moz-osx-font-smoothing: grayscale;
+        overflow: hidden;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-property: color, background-color;
+        transition-property: color, background-color;
+      }
+      .hvr-fade:hover, .hvr-fade:focus, .hvr-fade:active {
+        background-color: var(--light-primary-color);
+        color: white;
+      }
+
+      
+    </style>
+    <section id="main-content">
+      <paper-material id="main-paper">
+          
+          <paper-material id="profile-paper-content"  elevation="0">
+            <iron-image id="memberImg" sizing="{{_imgSizing}}"  src="{{memberImg}}" position="center"></iron-image>
+            <p id="name">{{name}}</p>
+          </paper-material>
+        
+        
+        <section id="info-content-box">
+          <!-- TODO:Make dynamic queries in future element functionality -->
+          <a href="#">
+            <div id="title" class="info-content hvr-fade">
+              <h3 class="info title">Title</h3>
+              <p class="info">{{title}}</p>
+              <p class="info">______________________________________</p>
+              <br>
+            </div>
+          </a>
+
+          <!-- TODO:Make dynamic queries in future element functionality -->
+          <a href="#">
+            <div on-special-tap="{{seeDepartment}}" class="info-content hvr-fade">
+              <h3 class="info title">Department</h3>
+              <p class="info">{{department}}</p>
+              <p class="info">______________________________________</p>
+              <br>
+            </div>
+          </a>
+          
+          <!-- TODO:Make dynamic queries in future element functionality -->
+          <a href="#">
+            <div on-tap="phoneContact" class="info-content hvr-fade">
+              <h3 class="info title">Phone</h3>
+              <p class="info">{{phone}}</p>
+              <p class="info">______________________________________</p>
+              <br>
+            </div>
+          </a>
+
+          <a href="{{mailTo}}">
+            <div  class="info-content hvr-fade">
+              <h3 class="info title">Email</h3>          
+              <p class="info">{{email}}</p>
+              <p class="info">______________________________________</p>
+              <br>
+            </div>
+          </a>
+        </section>
+
+      </paper-material>
+    </section>  
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'team-member',
+
+      properties: {
+        name: {
+          type: String,
+          value: 'Bill Murray',
+          notify: true
+        },
+        title: {
+          type: String,
+          value: 'Customer Service Representative 1',
+          notify: true
+        },
+        department: {
+          type: String,
+          value: 'Customer Service',
+          notify: true
+        },
+        phone: {
+          type: String,
+          value: '(503) 962-9838 ext. 000',
+          notify: true
+        },
+        email: {
+          type: String,
+          value: 'Lee13011@byui.edu',
+          notify: true
+        },
+        mailTo:{
+          type: String,
+          value: '',
+          notify: true
+        },
+        memberImg: {
+          type: String,
+          value: 'http://fillmurray.com/200/275',
+          notify: true
+        },
+        imgType: {
+          type: String,
+          value: 'square',
+          notify: true
+        },
+        _imgSizing: {
+          type: String,
+          value: 'contain',
+          notify: true
+        }
+
+      },
+      ready: function() {
+        this.mailTo = 'mailto:' + this.email;
+        
+        switch(this.imgType) {
+          case 'square':
+            this._imgSizing = 'contain';
+            break;
+          case 'round':
+            this._imgSizing = 'cover';
+            this.$.memberImg.style.borderRadius = '50%';
+            this.$.memberImg.style.height = '200px';
+            this.$.memberImg.style.width = '200px';
+            break;
+
+
+        }
+      }
+    });
+  })();   
+  </script>
+</dom-module>
