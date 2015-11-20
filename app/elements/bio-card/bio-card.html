@@ -1,0 +1,214 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="bio-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      #content {
+        padding-top: 25px;
+        padding-bottom: 25px;
+      }
+      #card-container {
+        display: -webkit-flex;
+        display: flex;
+
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        width: 100%;
+      }
+      #experience-heading {
+        margin: 0;
+        font-size: 250%;
+      }
+      #main-image {
+      }
+      #job-text {
+        display: block;
+      }
+      #contact-text {
+      }
+      #person-info-container {
+        display: -webkit-flex;
+        display: flex;
+
+        -webkit-flex-direction: row;
+        flex-direction: row;
+      }
+      #text-content-wrapper {
+        display: -webkit-flex;
+        display: flex;
+
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        width: 100%;
+      }
+      iron-image {
+        width: 100%;
+      }
+      .card-border {
+        margin: 0;
+        padding: 0;
+        height: auto;
+      }
+      .heading2 {
+        margin: 0;
+        font-size: 250%;
+      }
+      .heading3 {
+        margin: 0;
+        padding: 5px;
+      }
+      .text-border {
+        margin: 0;
+        padding: 20px 40px;
+        width: 40%;
+      }
+      .text-border2 {
+        margin: 0;
+        padding: 0px 40px 10px 40px;
+      }
+      .experience-item {
+        height: auto;
+        padding: 10px 40px 10px 40px;
+      }
+      .experience-title {
+        background-color: lightgray;
+        height: 40px;
+        padding: 10px 40px 20px 40px;
+      }
+      #experience-wrapper {
+        display: none;
+      }
+    </style>
+    <section id="content">
+      <paper-material elevation="{{cardElevation}}">
+        <div id="card-container">
+          <iron-image id="main-image" class="" sizing="cover" preload fade src="{{imageSource}}"></iron-image>
+          <div id="text-content-wrapper">
+            <div id="person-info-container">
+              <div id="job-text" class="text-border">
+                <h2 class="heading2">{{name}}</h2>
+                <h3>{{jobTitle}}</h3>
+              </div>
+              <div id="contact-text" class="text-border">
+                <p class="card-border">Websites: <span>{{websites}}</span></p>
+                <p class="card-border">Phone: <span>{{phone}}</span></p>
+                <p class="card-border">Email: <span>{{email}}</span></p>
+                <p class="card-border">Address: <span>{{address}}</span></p>
+              </div>
+            </div>
+            <div class="text-border2">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div id="experience-wrapper">
+          <div class="experience-title">
+            <h3 id="experience-heading">Experience</h3>
+          </div>
+          <div class="experience-item">
+            <h3 class="heading3">Experience</h3>
+            <p class="text-border2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+          </div>
+          <div class="experience-item">
+            <h3 class="heading3">Experience</h3>
+            <p class="text-border2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+          </div>
+        </div>
+      </paper-material>
+    </section>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'bio-card',
+
+      properties: {
+        name: {
+          type: String,
+          value: 'bio-card',
+          notify: true
+        },
+        cardElevation: {
+          type: Number,
+          value: 1,
+          notify: true
+        },
+        imageSource: {
+          type: String,
+          value: "http://lorempixel.com/400/400/cats",
+          notify: true
+        },
+        jobTitle: {
+          type: String,
+          value: 'Web Designer',
+          notify: true
+        },
+        imagePosition: {
+          type: String,
+          value: 'Left',
+          notify: true
+        },
+        experience: {
+          type: Boolean,
+          value: false
+        },
+        address: {
+          type: String,
+          value: '3483 Street Street',
+          notify: true
+        },
+        email: {
+          type: String,
+          value: 'JohnSmith@email.com',
+          notify: true
+        },
+        phone: {
+          type: String,
+          value: '(555)555-4389',
+          notify: true
+        },
+        websites: {
+          type: String,
+          value: 'www.helloworld.com',
+          notify: true
+        }
+      },
+
+      ready: function () {
+        if(this.imagePosition == "Right" || this.imagePosition == "right") {
+          this.$['card-container'].style['flex-direction'] = 'row-reverse';
+          this.$['card-container'].style['-webkit-flex-direction'] = 'row-reverse';
+        }
+        else if(this.imagePosition == "Left" || this.imagePosition == "left") {
+          this.$['card-container'].style['flex-direction'] = 'row';
+          this.$['card-container'].style['-webkit-flex-direction'] = 'row';
+        }
+        else if(this.imagePosition == "Top" || this.imagePosition == "top") {
+          this.$['card-container'].style['flex-direction'] = 'column';
+          this.$['card-container'].style['-webkit-flex-direction'] = 'column';
+          this.$['main-image'].style['height'] = '400px';
+        }
+        if(this.experience == true) {
+          this.$['experience-wrapper'].style.display = 'block';
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>
