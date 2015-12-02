@@ -1,0 +1,76 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="call-to-action">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      paper-button{
+        background:#3F51B5;
+        color:#fff;
+      }
+      #container{
+         display:flex;
+         flex-wrap:wrap;
+          justify-content:center;
+        align-items:center;
+       }
+       #call-to-action{
+        display:flex;
+        padding:10px;
+        justify-content:center;
+        align-items:center;
+       }
+    </style>
+    <paper-material id="call-to-action"  elevation="{{cardElevation}}">
+      <div id="container">
+        <h2>{{Title}}</h2>
+        <p>em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mol.</p>
+        <a href="{{links}}"><paper-button raised>Do Something</paper-button></a>
+    </div>
+    </paper-material>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'call-to-action',
+
+      properties: {
+        Title: {
+          type: String,
+          value: 'Marketing Information',
+          notify: true
+        },
+        cardElevation: {
+        type: String,
+        value: "1",
+        notify: true
+      },
+      links: {
+        type: String,
+        value: "https://www.google.com",
+        notify: true
+      }
+      }
+    });
+  })();
+  </script>
+</dom-module>

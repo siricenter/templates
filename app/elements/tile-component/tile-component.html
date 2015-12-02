@@ -66,7 +66,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
       consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
       cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-      proident, sunt in culpa qui officia deserunt mol</p>
+      proident, sunt in culpa qui officia deserunt mol.</p>
+       <p >em ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mol.</p>
     </div>
   </div>
 </paper-material>
@@ -135,31 +141,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   this.$.text.style['order'] = 2;
                   break;
            case 'topLeft':
-                  this.$.toggleImage.style['order'] = 1;
-                  this.$.title.style['order'] = 2;
-                  this.$.title.style['padding-left'] = '10%';
-                  this.$.container.style['flex-direction'] = 'row';
-                  this.$.toggleHide.style['display'] = 'none'; //maybe do a height 0; set overflow to none
-                  this.$.toggleParagraph.style['display'] = 'flex';
-                   this.$.text.style['flex-basis'] = 'auto';
-                  this.$.imageLocation.style['display'] = 'none';
-                   this.$.toggleImage.style['display'] = 'flex';
-                   this.$.title.style['display'] = 'flex';
-                   this.$.title.style['flex-grow'] = '5';
-                   this.$.title.style['align-self'] = 'flex-end';
-                   this.$.title.style['margin'] = '0px';
+                   this.$.container.style['display'] = 'block';
+                   this.$.toggleHide.style['display'] = 'none'; //maybe do a height 0; set overflow to none
+                  this.$.toggleParagraph.style['display'] = 'block';
+                  this.$.imageLocation.style['float'] = 'left';
+                  this.$.imageLocation.style['padding-right'] = '10px';
                   break;
           case 'topRight':
-                  this.$.container.style['flex-direction'] = 'row';
-                  this.$.toggleHide.style['display'] = 'none'; //maybe do a height 0; set overflow to none
-                  this.$.toggleParagraph.style['display'] = 'flex';
-                   this.$.text.style['flex-basis'] = 'auto';
-                  this.$.imageLocation.style['display'] = 'none';
-                   this.$.toggleImage.style['display'] = 'flex';
-                   this.$.title.style['display'] = 'flex';
-                   this.$.title.style['flex-grow'] = '5';
-                   this.$.title.style['align-self'] = 'flex-end';
-                   this.$.title.style['margin'] = '0px';
+                  this.$.container.style['display'] = 'block';
+                   this.$.toggleHide.style['display'] = 'none'; //maybe do a height 0; set overflow to none
+                  this.$.toggleParagraph.style['display'] = 'block';
+                  this.$.imageLocation.style['float'] = 'right';
+                  this.$.imageLocation.style['padding-right'] = '10px';
                   break;
           case 'left':
                   this.$.container.style['flex-direction'] = 'row';
@@ -169,6 +162,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   this.$.toggleHide.style['display'] = 'none'; //maybe do a height 0; set overflow to none
                   this.$.toggleParagraph.style['display'] = 'block';
                   this.$.text.style['flex-grow'] = 3;
+                  this.$.imageLocation.style['flex-grow'] = 1;
                   break;
          case 'right':
                   this.$.container.style['flex-direction'] = 'row-reverse'
@@ -178,6 +172,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   this.$.toggleHide.style['display'] = 'none'; //maybe do a height 0; set overflow to none
                   this.$.toggleParagraph.style['display'] = 'block';
                   this.$.text.style['flex-grow'] = 3;
+                   this.$.imageLocation.style['flex-grow'] = 1;
                   break;
           default:
                   this.$.imageLocation.style.textAlign = '';
