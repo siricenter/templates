@@ -16,9 +16,50 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
       }
+      iron-image {
+        width: 100%;
+      }
+      paper-material {
+        width: 440px;
+      }
+      #content {
+        padding: 40px 0px 40px 0px;
+      }
+      #brand-container {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        padding: 20px;
+        margin: 0;
+      }
+      #brand-text {
+        font-size: 200%;
+        margin: 0;
+        color: white; 
+        font: 24px/45px Helvetica, Sans-Serif; 
+        letter-spacing: -1px;
+        text-align: center;  
+      }
+      #brand-text-background {
+        background: rgb(0, 0, 0); /* fallback color */
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px; 
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        width: 380px;
+      }
     </style>
     <section id="content">
       <paper-material elevation="{{cardElevation}}">
+        <div id="brand-container">
+          <iron-image id="main-image" class="" preload fade src="{{imageSource}}"></iron-image>
+          <p id="brand-text">
+          <span id="brand-text-background">{{brandText}}<paper-ripple></paper-ripple>
+          </span>
+          </p>
+        </div>
       </paper-material>
     </section>
   </template>
@@ -38,6 +79,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         cardElevation: {
           type: Number,
           value: 1,
+          notify: true
+        },
+        imageSource: {
+          type: String,
+          value: "http://lorempixel.com/400/400/cats",
+          notify: true
+        },
+        brandText: {
+          type: String,
+          value: 'Brand Text',
           notify: true
         }
       }
