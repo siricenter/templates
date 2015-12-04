@@ -85,10 +85,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <!-- Main Content -->
     <div class="content">
-
+    <Carousel-Element></Carousel-Element>
 
 
       <iron-pages attr-for-selected="data-route" selected="{{route}}">
+
 
 
 
@@ -96,6 +97,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <firebase-data-importer base-ref="https://rbdcdataviz.firebaseio.com/ipedsData/"></firebase-data-importer>
     <chart-specs chart-selection="{{chart-selection}}"></chart-specs>
     <h1>{{chart-selection}}</h1>
+
 
     <team-member img-type="round"></team-member>
 
