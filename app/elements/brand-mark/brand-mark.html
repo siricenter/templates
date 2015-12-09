@@ -20,7 +20,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 100%;
       }
       paper-material {
-        width: 240px;
       }
       #content {
         padding: 40px 0px 40px 0px;
@@ -43,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       #brand-text-background {
         background: rgb(0, 0, 0); /* fallback color */
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.5);
         padding: 0px 10px; 
         position: absolute;
         bottom: 20px;
@@ -52,7 +51,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <section id="content">
-      <paper-material elevation="{{cardElevation}}">
+      <paper-material id="paper-material" elevation="{{cardElevation}}">
         <div id="brand-container">
           <iron-image id="main-image" class="" preload fade src="{{imageSource}}"></iron-image>
           <p id="brand-text">
@@ -90,7 +89,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: String,
           value: 'Brand Text',
           notify: true
+        },
+        imageWidth: {
+          type: Number,
+          value: 200,
+          notify: true
         }
+      },
+
+      ready: function () {
+        var width = this.imageWidth + 40 + "px";
+        this.$['content'].style.width = width;
       }
     });
   })();
