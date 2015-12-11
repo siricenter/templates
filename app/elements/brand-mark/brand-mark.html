@@ -18,11 +18,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       iron-image {
         width: 100%;
+/*        --iron-image-width: 200px;*/
       }
       paper-material {
+        height:inherit;
       }
       #content {
         padding: 40px 0px 40px 0px;
+        --iron-image-width:300px;
       }
       #brand-container {
         display: -webkit-flex;
@@ -43,11 +46,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       #brand-text-background {
         background: rgb(0, 0, 0); /* fallback color */
         background: rgba(0, 0, 0, 0.5);
-        padding: 0px 10px; 
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-        width: 180px;
+        padding: 4px 46px; 
+        position: relative;
+        bottom: 40px;
       }
     </style>
     <section id="content">
@@ -100,6 +101,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ready: function () {
         var width = this.imageWidth + 40 + "px";
         this.$['content'].style.width = width;
+        var height = this.imageWidth + 40 + "px";
+        this.$['content'].style.height = width;
       }
     });
   })();
