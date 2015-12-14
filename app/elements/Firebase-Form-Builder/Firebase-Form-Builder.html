@@ -8,6 +8,10 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
+<!-- 
+3 different options for creating a form the form. 1. Create a form based on the most recent children on the specified node, 2. create a form based on an example child inside the specified node, and 3. create a from that loops through all children and includes all children.
+ -->
+
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <dom-module id="Firebase-Form-Builder">
@@ -24,6 +28,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <form>
       <input type="submit" value="Submit">
     </form>
+
   </template>
   <script>
   (function() {
