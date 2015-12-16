@@ -16,17 +16,51 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
       }
-      #media-wrapper {
-        width: 150%;
+      iron-image {
+        height: 200px;
+        width: 100%;
+      }
+      #main-image {
+        flex-grow: 2;
+      }
+      #media-wrapper-container {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
         height: 400px;
         position: relative;
-        right: 100px;
         background-color: gray; 
       }
+      #screen-menu-bar {
+        width: 500px;
+      }
     </style>
-    <div id="media-wrapper"></div>
+    <div id="media-wrapper-container">
+      <iron-image id="main-image" sizing="contain" preload fade src="{{imageSource}}"></iron-image>
+      <button onclick="fullscreen()">Click</button>
+      <div id="screen-menu-bar">
+        <iron-icon icon="icons:fullscreen"></iron-icon>
+      </div>
+    </div>
   </template>
   <script>
+  function fullscreen(){
+    var elem = document.querySelector("#media-wrapper-container");
+    console.log(elem);
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      elem.msRequestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen();
+    }
+  }
   (function() {
     'use strict';
 
@@ -34,12 +68,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'media-wrapper',
 
       properties: {
-        foo: {
+        imageSource: {
           type: String,
-          value: 'media-wrapper',
+          value: "http://lorempixel.com/200/200/cats",
           notify: true
         }
-      }
+      },
     });
   })();
   </script>
