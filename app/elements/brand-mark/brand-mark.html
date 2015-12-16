@@ -1,0 +1,110 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="brand-mark">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      iron-image {
+        width: 100%;
+/*        --iron-image-width: 200px;*/
+      }
+      paper-material {
+        height:inherit;
+      }
+      #content {
+        padding: 40px 0px 40px 0px;
+        --iron-image-width:300px;
+      }
+      #brand-container {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        padding: 20px;
+        margin: 0;
+      }
+      #brand-text {
+        font-size: 200%;
+        margin: 0;
+        color: white; 
+        font: 24px/45px Helvetica, Sans-Serif; 
+        letter-spacing: -1px;
+        text-align: center;  
+      }
+      #brand-text-background {
+        background: rgb(0, 0, 0); /* fallback color */
+        background: rgba(0, 0, 0, 0.5);
+        padding: 4px 46px; 
+        position: relative;
+        bottom: 40px;
+      }
+    </style>
+    <section id="content">
+      <paper-material id="paper-material" elevation="{{cardElevation}}">
+        <div id="brand-container">
+          <iron-image id="main-image" class="" preload fade src="{{imageSource}}"></iron-image>
+          <p id="brand-text">
+          <span id="brand-text-background">{{brandText}}<paper-ripple></paper-ripple>
+          </span>
+          </p>
+        </div>
+      </paper-material>
+    </section>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'brand-mark',
+
+      properties: {
+        name: {
+          type: String,
+          value: 'bio-card',
+          notify: true
+        },
+        cardElevation: {
+          type: Number,
+          value: 1,
+          notify: true
+        },
+        imageSource: {
+          type: String,
+          value: "http://lorempixel.com/200/200/cats",
+          notify: true
+        },
+        brandText: {
+          type: String,
+          value: 'Brand Text',
+          notify: true
+        },
+        imageWidth: {
+          type: Number,
+          value: 200,
+          notify: true
+        }
+      },
+
+      ready: function () {
+        var width = this.imageWidth + 40 + "px";
+        this.$['content'].style.width = width;
+        var height = this.imageWidth + 40 + "px";
+        this.$['content'].style.height = width;
+      }
+    });
+  })();
+  </script>
+</dom-module>
