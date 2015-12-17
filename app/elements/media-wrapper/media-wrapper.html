@@ -15,6 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
       :host {
         display: block;
+        --main-bg-color: rgb(160, 160, 160);
       }
       iron-image {
         height: 200px;
@@ -31,34 +32,86 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         justify-content: flex-end;
         align-items: center;
         width: 100%;
-        height: 400px;
+        height: 600px;
         position: relative;
-        background-color: gray; 
+        background-color: var(--main-bg-color); 
       }
       #screen-menu-bar {
-        width: 500px;
+        display: none;
+        justify-content: flex-end;
+        background: rgb(40, 40, 40); /* fallback color */
+        background: rgba(40, 40, 40, 0.3);
+        position: absolute;
+        bottom: 32px;
+        width: 400px;
+        height: 32px;
+        top: 50%;
+        margin-left: -200px;
+        margin-top: 268px;
+        left: 50%;
+      }
+      .icon-size {
+        --iron-icon-height: 32px;
+        --iron-icon-width: 32px;
+        --iron-icon-fill-color: rgba(240, 240, 240, 0.7);
+      }
+      .icon-size:hover {
+        background-color: rgba(200, 200, 200, 0.3);
       }
     </style>
-    <div id="media-wrapper-container">
+    <div id="media-wrapper-container" onmouseover="mouseOverMenu()" onmouseout="mouseOffMenu()">
       <iron-image id="main-image" sizing="contain" preload fade src="{{imageSource}}"></iron-image>
-      <button onclick="fullscreen()">Click</button>
       <div id="screen-menu-bar">
-        <iron-icon icon="icons:fullscreen"></iron-icon>
+        <iron-icon class="icon-size" onclick="shadowed()" icon="icons:view-array"></iron-icon>
+        <iron-icon class="icon-size" onclick="fullscreen()" icon="icons:fullscreen"></iron-icon>
       </div>
     </div>
   </template>
   <script>
   function fullscreen(){
     var elem = document.querySelector("#media-wrapper-container");
-    console.log(elem);
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.msRequestFullscreen) {
-      elem.msRequestFullscreen();
-    } else if (elem.mozRequestFullScreen) {
-      elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) {
-      elem.webkitRequestFullscreen();
+    var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
+    var msfullscreen = document.msFullscreenElement;
+    console.log(fullscreenElement + msfullscreen);
+      if (fullscreenElement === null || msfullscreen === null) {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+          elem.mozRequestFullScreen();
+        } 
+      } 
+      else if (fullscreenElement !== null || msfullscreen !== null) {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+      }
+  }
+  function mouseOverMenu() {
+    document.getElementById('screen-menu-bar').style.display = 'flex';
+  }
+  function mouseOffMenu() {
+    document.getElementById('screen-menu-bar').style.display = 'none'
+  }
+  function shadowed() {
+    var shadowed = document.getElementById('media-wrapper-container').style['background-color'];
+    if (shadowed == 'rgb(32, 32, 32)') {
+    document.getElementById('media-wrapper-container').style['background-color'] = 'rgb(160, 160, 160)';
+    }
+    else if (shadowed == '') {
+    document.getElementById('media-wrapper-container').style['background-color'] = 'rgb(32, 32, 32)';
+    }
+    else {
+    document.getElementById('media-wrapper-container').style['background-color'] = 'rgb(32, 32, 32)';
     }
   }
   (function() {
