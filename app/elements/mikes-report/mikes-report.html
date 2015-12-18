@@ -1,0 +1,115 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="mikes-report">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+       #container{
+    display:inline-block;
+  }
+      span{
+    background:#F8F8F8;
+    border: 5px solid #DFDFDF;
+    color: #717171;
+    font-size: 13px;
+    height: 30px;
+    letter-spacing: 1px;
+    line-height: 30px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    top: -80px;
+    left:-30px;
+    display:none;
+    padding:0 20px;
+    
+}
+span:after{
+    content:'';
+    position:absolute;
+    bottom:-10px; 
+    width:10px;
+    height:10px;
+    border-bottom:5px solid #dfdfdf;
+    border-right:5px solid #dfdfdf;
+    background:#f8f8f8;
+    left:50%;
+    margin-left:-10px;
+    -moz-transform:rotate(45deg);
+    -webkit-transform:rotate(45deg);
+    transform:rotate(45deg);
+}
+.words{
+  display:block;
+}
+p{
+    margin:50px;
+    position:relative;
+    cursor:pointer;
+}
+ul{
+  margin:100px;
+}
+
+p:hover span{
+    display:block;
+    z-index: 999;
+}
+    </style>
+    <paper-material id="tile-content" elevation="{{cardElevation}}">
+<div id="container">
+  <div id="toggleHide">
+   <h2 >{{title}}</h2>
+           <p>Show me what you Learned!(hover over it and it shall be revealed)<span>I learned to build Polymer Web Components!</span></p>
+           <p>What else?(hover over it and it shall be revealed)<span>I learned how to better manipulate css with Javascript!</span></p>
+           <p>More!?(hover over it and it shall be revealed)<span>I learned how to integrate with mailchimp api using ajax and json!</span></p>
+      </div>
+      <div class="words">
+      <p>Ok so that is a really simple run down of some of the things that I learned. Really haveing been able to come and work has helped increase my understanding of how these things can actually be used. For example, creating a subscribe to email element not only helped me to learn more about ajax calls and json, but it gave a real world way to use them. It was also neat because there was no documentation on how to use the polymer ajax with the mailchimp api. It was fun to be one of the first to do that! Without this opporutnity I would not have beena able to learn that as easily.</p>
+      <p>I thought about what could be done to imporve the experience so that the next group can learn even more then I did. I came up with a few suggestions that I think will help:</p>
+        <ul>
+            <li>I think that it should get started earlier in the semester. I feel like we didn't really get going until close to November and I would have loved to have had a few more weeks to learn more and build more components. I felt like it was just starting when we were at the end of the semester.</li>
+            <li>I also think it would be nice to work closer with the other students. Most times I felt like we were all seperatly building our own elements and didn't have much collaboration.</li> 
+            <li>I think we should have had a better time schedule. For example I think we should have said we needed to build an element every week starting in November. I felt like it would have helped us to utilize time better, and use the agile development methodoogy better</li>
+        </ul>
+        <p>I think that with these additions the students will be able to get more out of the program.</p>
+      </div>
+
+  </div>
+</paper-material>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'mikes-report',
+
+      properties: {
+        title: {
+          type: String,
+          value: 'Things I Learned',
+          notify: true
+        },
+        imgPath:{
+                  type: String,
+        value: 'http://lorempixel.com/350/350/city',
+        notify: true
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>
