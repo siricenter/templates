@@ -1,0 +1,73 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="call-to-action">
+    <style>
+
+      .wrapper {
+        text-align: center;
+        padding: 48px 62px;
+        padding-top: 0px;
+        border-bottom: solid 1px darkgray;
+      }
+
+      .header {
+        font-size: 70px;
+      }
+
+      .subtitle {
+        font-size: 20px;
+      }
+
+      .main-button {
+        background: var(--button-color-primary);
+        width: auto;
+        height: auto;
+        padding: 20px 30px;
+        border-radius: 0px;
+        font-size: 25px;
+        color: #FFF;
+        text-shadow: var(--text-shadow);
+        border: 0;
+        border-bottom: 5px solid rgba(0,0,0,0.3);
+        cursor: pointer;
+      }
+
+      .main-button:hover {
+        animation: hover ease-in 0.1s;
+        animation-fill-mode: forwards;
+      } 
+
+      @keyframes hover {
+        from  {opacity: 1; }
+        to    {opacity: 0.8; }
+      }
+    </style>
+  <template>
+    <div class="wrapper">
+        <p class="header"> {{main}}</p>
+        <div class="subtitle">
+          <content class="subtitle" select="#subtitle"></content>
+        </div>
+        <button class="main-button">{{button}}</button>
+    </div>
+  </template>
+  <script>
+    (function() {
+      Polymer({
+        is: 'call-to-action',
+
+        properties: {
+          main: {
+            type: String,
+            value: 'Template for call to action.',
+            notify: true
+          },
+          button: {
+            type: String,
+            value: 'Template button text',
+            notify: true
+          }
+        }
+      });
+    })();
+  </script>

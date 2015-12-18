@@ -1,0 +1,121 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="mailchimp-email-subscriber">
+  <template id="bind">
+    <style>
+      :host {
+        display: block;
+      }
+      #container{
+         display:flex;
+         flex-wrap:wrap;
+       }
+       #title{
+        display:flex;
+        flex-basis:100%;
+        flex-grow:6;
+        justify-content:center;
+        align-items:center;
+       }
+       .media-icons{
+        display:flex;
+        padding:10px;
+        justify-content:center;
+        align-items:center;
+       }
+       #center{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-basis:100%;
+       }
+       paper-button {
+        background-color: var(--default-primary-color);
+        color: var(--text-primary-color);
+      }
+    </style>
+    <paper-material id="media-content" elevation="{{cardElevation}}">
+    <div id="container">
+      <div id="title"><h2>{{title}}</h2></div>
+      <div id="center">
+        <div class="media-icons" id="facebook">
+          <form is="iron-form" id="formPost" method="post"  action="//easyhtmlcoding.us12.list-manage.com/subscribe/post?u=6a5e174d527a5d953bb1b93fd&amp;id=17f088bc14"> 
+            <paper-input name="email" id="email" label="Email Address" bind-value="{{email}}" required></paper-input>
+            <paper-button  type="submit" name="submit" raised on-click="setajax">Subscribe!</paper-button>
+          </form>
+            <iron-ajax
+              id="ajax"
+              url="//easyhtmlcoding.us12.list-manage.com/subscribe/post?u=6a5e174d527a5d953bb1b93fd&amp;id=17f088bc14"
+              params="{{email}}"
+              handle-as="json"
+              method="POST"
+              on-response="hresponse"
+              debounce-duration="300">
+            </iron-ajax>
+            <firebase-collection id="sub"
+                location="{{location}}"
+                data="{{email}}">
+              </firebase-collection>
+        </div>
+      </div>
+     </div> 
+  </paper-material>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'mailchimp-email-subscriber',
+      
+  hresponse: function(request) {
+    console.log(request.detail.response);
+    console.log(this.$.ajax.lastResponse);
+  },
+      properties: {
+        title: {
+          type: String,
+          value: 'mailchimp email subscriber',
+          notify: true
+        },
+        email:{
+          type: String,
+          value: '',
+          notify: true
+        },
+        location: {
+          type: String,
+          value: '',
+          notify: true
+        }
+      },
+      setajax: function () {
+        var sublists = this.$.sub.data;
+        var location = this.$.sub.location;
+        console.log(location);
+        console.log(sublists);
+        this.$.sub.add(sublists);
+        this.$.ajax.url = "http://us12.api.mailchimp.com/1.3/?method=listSubscribe";
+        var val = this.$.ajax.params;
+        this.$.ajax.params = {apikey:"715c320fda0f66dc372535d387eefec4-us12",
+                            id:"17f088bc14",
+                            email_address:val
+                          };
+        this.$.ajax.generateRequest();
+  }
+    });
+  }
+
+  )();
+  </script>
+</dom-module>
